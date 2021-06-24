@@ -1,4 +1,5 @@
 (defpackage :ir1-grapher
+  (:shadow :stream)
   (:use :cl :cl-user)
   (:export :defhook))
 
@@ -37,8 +38,25 @@
 (eval-when (:compile-toplevel :load-toplevel)
   (defvar *acc* nil))
 
-(defhook sb-c::compile-component (component)
-  (push component *acc*))
+;; Currently, as far as I could tell, the only place this function is
+;; ever called from, is inside %compile-component, so it's fine to
+;; hook it this way.
+(eval-when (:compile-toplevel :load-toplevel)
+  (defvar *trace-number* 0))
+;; (defhook sb-c::ir2-convert (component)
+;;   (when (streamp sb-c::*compiler-trace-output*)
+;;     (let* ((pn (pathname sb-c::*compiler-trace-output*))
+;;            (out-pn (make-pathname
+;;                     :directory (pathname-directory pn)
+;;                     :name (format nil "trace-~A" (incf *trace-number*))
+;;                     :type "dot")))
+;;       (save-graph (graph component) out-pn)
+;;       (when sb-c::*compile-progress*
+;;         (format *debug-io* "wrote graphviz of component ~A to ~A.~%" component out-pn))))
+;;   (unhook sb-c::ir2-convert))
+
+;; (defhook sb-c::compile-component (component)
+;;   (push component *acc*))
 
 (defmacro with-digraph ((graph-sym) &body body)
   `(let ((,graph-sym (make-instance 'graph
@@ -204,10 +222,9 @@
           (sb-c::ref-derived-type ref)))
 
 (defmethod display ((comb sb-c::combination))
-  (format nil "COMBINATION [~A]:~%kind: ~A~%fun-info: ~A~%info: ~A"
+  (format nil "COMBINATION [~A]:~%kind: ~A~%info: ~A"
           (sxhash comb)
           (sb-c::combination-kind comb)
-          (sb-c::combination-fun-info comb)
           (sb-c::combination-info comb)))
 
 (defmethod display ((lvar sb-c::lvar))
@@ -252,7 +269,6 @@
     `(let ((,g ,graph)
            (,o ,obj))
        (unless (in-graph ,g ,o)
-         (format t "Not in graph ~A ~A~%" ,g ,o)
          (table-add ,g ,o)
          ,@body))))
 
