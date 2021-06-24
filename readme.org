@@ -1,0 +1,17 @@
+* ir1-grapher
+  This library graphs SBCL [[https://cmucl.org/docs/internals/html/The-Implicit-Continuation-Representation.html#The-Implicit-Continuation-Representation][ir1]] and outputs graphviz.
+
+  Here's an [[./example-out.svg][example]] .svg file showing a render of the component
+  created when compiling ~(defun foo () (+ 1 2))~.
+
+  As of now, it is stil unfinished. In particular, I don't have proper
+  output of all the node types that SBCL uses, and the interface is
+  not clean.
+
+** How do I use it?
+   Right now, there is no real user-facing interface. As I've been
+   debugging, I've been hooking ~sb-c::compile-component~ with the
+   ~defhook~ macro that I defined in ~ir1-grapher.lisp~ and simply
+   grabbing the components that creates, and then calling ~(save-graph
+   *graph* #p"./whatever.dot")~.
+  
