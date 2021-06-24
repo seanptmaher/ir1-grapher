@@ -60,7 +60,7 @@
                                     ,(incf *subgraph-number*)))
                         (stream ,graph-sym))
           ,@body
-          (write-string (format nil "}~%") (stream ,graph-sym))))
+          (format (stream ,graph-sym) "}~%")))
 
 (defun save-graph (str filename)
   (with-open-file (s filename :direction :output :if-does-not-exist :create :if-exists :supersede)
