@@ -134,7 +134,7 @@
                                          (lambda (x)
                                            (concatenate 'string x (format nil "[ctran: ~A]" (sb-c::ctran-kind to)))))
                        (unless (find-if (lambda (x) (string= x "color")) options)
-                         '("color" "red")))))
+                         '("color" "blue")))))
 
 ;; ;; same thing here with REFs
 ;; (defmethod edge ((graph graph) from (to sb-c::ref) &rest options)
@@ -271,7 +271,7 @@
     (edge-and-add graph cblock (sb-c::block-component cblock) "label" "component")
     (edge-and-add graph cblock (sb-c::block-succ cblock) "label" "succ")
     (edge-and-add graph cblock (sb-c::block-pred cblock) "label" "pred")
-    (edge-and-add graph cblock (sb-c::block-start cblock) "label" "start" "color" "red")))
+    (edge-and-add graph cblock (sb-c::block-start cblock) "label" "start")))
 
 ;; Unfinished
 (defmethod add ((graph graph) (cl sb-c::clambda))
@@ -305,7 +305,7 @@
   (unig (graph bind)
     (edge-and-add graph bind (sb-c::bind-lambda bind) "label" "lambda")
     (edge-and-add graph bind (sb-c::bind-next bind) "label" "next" "color" "green")
-    (edge-and-add graph bind (sb-c::bind-prev bind) "label" "prev" "color" "blue")))
+    (edge-and-add graph bind (sb-c::bind-prev bind) "label" "prev" "color" "red")))
 
 (defmethod add ((graph graph) (comb sb-c::combination))
   (unig (graph comb)
