@@ -13,5 +13,5 @@
    debugging, I've been hooking ~sb-c::compile-component~ with the
    ~defhook~ macro that I defined in ~ir1-grapher.lisp~ and simply
    grabbing the components that creates, and then calling ~(save-graph
-   *graph* #p"./whatever.dot")~.
+   (graph *component*) #p"./whatever.dot")~.
   
