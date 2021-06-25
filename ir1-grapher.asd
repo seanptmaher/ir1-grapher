@@ -1,4 +1,9 @@
 (defsystem "ir1-grapher"
   :depends-on ("cl-ppcre")
   :components
-  ((:file "ir1-grapher")))
+  ((:module src
+            :serial t
+            :components
+            ((:file "package")
+             (:file "hooking")
+             (:file "graphing")))))

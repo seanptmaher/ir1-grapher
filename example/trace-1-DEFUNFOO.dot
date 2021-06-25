@@ -1,0 +1,570 @@
+digraph {
+subgraph component_4 {
+"COMPONENT [NIL]: ''DEFUN FOO''" -> "CBLOCK [4463300844594976231]"[label="head"];
+"CBLOCK [4463300844594976231]" -> "COMPONENT [NIL]: ''DEFUN FOO''"[label="component"];
+subgraph component_4 {
+}
+"CBLOCK [4463300844594976231]" -> "CBLOCK [3645046891840945289]"[label="succ[# 0]"];
+"CBLOCK [4463300844594976231]" -> "CBLOCK [3132410390524348494]"[label="succ[# 1]"];
+"CBLOCK [3645046891840945289]" -> "COMPONENT [NIL]: ''DEFUN FOO''"[label="component"];
+subgraph component_4 {
+}
+"CBLOCK [3645046891840945289]" -> "CBLOCK [4585696332871182801]"[label="succ[# 0]"];
+"CBLOCK [4585696332871182801]" -> "COMPONENT [NIL]: ''DEFUN FOO''"[label="component"];
+subgraph component_4 {
+}
+"CBLOCK [4585696332871182801]" -> "CBLOCK [2899060635013471197]"[label="succ[# 0]"];
+"CBLOCK [2899060635013471197]" -> "COMPONENT [NIL]: ''DEFUN FOO''"[label="component"];
+subgraph component_4 {
+}
+"CBLOCK [2899060635013471197]" -> "CBLOCK [1320847031603993339]"[label="succ[# 0]"];
+"CBLOCK [1320847031603993339]" -> "COMPONENT [NIL]: ''DEFUN FOO''"[label="component"];
+subgraph component_4 {
+}
+"CBLOCK [1320847031603993339]" -> "NOT SUPPORTED YET:
+ NIL"[label="succ"];
+"CBLOCK [1320847031603993339]" -> "CBLOCK [2899060635013471197]"[label="pred[# 0]"];
+"CBLOCK [1320847031603993339]" -> "NOT SUPPORTED YET:
+ NIL"[label="start"];
+"CBLOCK [2899060635013471197]" -> "CBLOCK [4585696332871182801]"[label="pred[# 0]"];
+"CBLOCK [2899060635013471197]" -> "CRETURN [4609085356241255392]:
+result-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>"[label="start[ctran: BLOCK-START]"color="blue"];
+"CRETURN [4609085356241255392]:
+result-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>" -> "CLAMBDA [626932464180012583]:
+%debug-name: NIL
+source-name: FOO
+kind: NIL"[label="lambda"];
+"CLAMBDA [626932464180012583]:
+%debug-name: NIL
+source-name: FOO
+kind: NIL" -> "CLAMBDA [626932464180012583]:
+%debug-name: NIL
+source-name: FOO
+kind: NIL"[label="home"];
+"CLAMBDA [626932464180012583]:
+%debug-name: NIL
+source-name: FOO
+kind: NIL" -> "LAMBDA-VAR [1191290977527232243]:
+arg-info: NIL
+flags: 0"[label="vars[# 0]"];
+"CLAMBDA [626932464180012583]:
+%debug-name: NIL
+source-name: FOO
+kind: NIL" -> "LAMBDA-VAR [3773206468598114875]:
+arg-info: NIL
+flags: 0"[label="vars[# 1]"];
+"LAMBDA-VAR [1191290977527232243]:
+arg-info: NIL
+flags: 0" -> "CLAMBDA [626932464180012583]:
+%debug-name: NIL
+source-name: FOO
+kind: NIL"[label="home"];
+"LAMBDA-VAR [1191290977527232243]:
+arg-info: NIL
+flags: 0" -> "NOT SUPPORTED YET:
+ NIL"[label="sets"];
+"LAMBDA-VAR [3773206468598114875]:
+arg-info: NIL
+flags: 0" -> "CLAMBDA [626932464180012583]:
+%debug-name: NIL
+source-name: FOO
+kind: NIL"[label="home"];
+"LAMBDA-VAR [3773206468598114875]:
+arg-info: NIL
+flags: 0" -> "NOT SUPPORTED YET:
+ NIL"[label="sets"];
+"CRETURN [4609085356241255392]:
+result-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>" -> "LVAR [1661844173164221782]:
+%derived-type: NIL
+dynamic-extent: NIL"[label="result"];
+"LVAR [1661844173164221782]:
+%derived-type: NIL
+dynamic-extent: NIL" -> "CRETURN [4609085356241255392]:
+result-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>"[label="dest"color="brown"];
+"LVAR [1661844173164221782]:
+%derived-type: NIL
+dynamic-extent: NIL" -> "COMBINATION [2542886683951928896]:
+kind: KNOWN
+info: #<VOP-INFO
+        :NAME SB-VM::GENERIC-+
+        :ARG-TYPES (* *)
+        :RESULT-TYPES (*)
+        :LTN-POLICY :SAFE
+        :COST 10>"[label="uses"];
+"COMBINATION [2542886683951928896]:
+kind: KNOWN
+info: #<VOP-INFO
+        :NAME SB-VM::GENERIC-+
+        :ARG-TYPES (* *)
+        :RESULT-TYPES (*)
+        :LTN-POLICY :SAFE
+        :COST 10>" -> "LVAR [1619688607933610889]:
+%derived-type: #<VALUES-TYPE (VALUES
+                              (FUNCTION (&REST NUMBER)
+                               (VALUES NUMBER &OPTIONAL))
+                              &OPTIONAL)>
+dynamic-extent: NIL"[label="fun"];
+"LVAR [1619688607933610889]:
+%derived-type: #<VALUES-TYPE (VALUES
+                              (FUNCTION (&REST NUMBER)
+                               (VALUES NUMBER &OPTIONAL))
+                              &OPTIONAL)>
+dynamic-extent: NIL" -> "COMBINATION [2542886683951928896]:
+kind: KNOWN
+info: #<VOP-INFO
+        :NAME SB-VM::GENERIC-+
+        :ARG-TYPES (* *)
+        :RESULT-TYPES (*)
+        :LTN-POLICY :SAFE
+        :COST 10>"[label="dest"color="brown"];
+"LVAR [1619688607933610889]:
+%derived-type: #<VALUES-TYPE (VALUES
+                              (FUNCTION (&REST NUMBER)
+                               (VALUES NUMBER &OPTIONAL))
+                              &OPTIONAL)>
+dynamic-extent: NIL" -> "REF [3920794659018893621]:
+derived-type: #<VALUES-TYPE (VALUES
+                             (FUNCTION (&REST NUMBER)
+                              (VALUES NUMBER &OPTIONAL))
+                             &OPTIONAL)>"[label="uses"];
+"REF [3920794659018893621]:
+derived-type: #<VALUES-TYPE (VALUES
+                             (FUNCTION (&REST NUMBER)
+                              (VALUES NUMBER &OPTIONAL))
+                             &OPTIONAL)>" -> "NOT SUPPORTED YET:
+ #<GLOBAL-VAR
+   :%SOURCE-NAME +
+   :TYPE #<SB-KERNEL:FUN-TYPE (FUNCTION (&REST NUMBER)
+                               (VALUES NUMBER &OPTIONAL))>
+   :DEFINED-TYPE #<SB-KERNEL:FUN-TYPE (FUNCTION (&REST NUMBER)
+                                       (VALUES NUMBER &OPTIONAL))>
+   :WHERE-FROM :DECLARED
+   :KIND :GLOBAL-FUNCTION {10054484D3}>"[label="leaf"];
+"REF [3920794659018893621]:
+derived-type: #<VALUES-TYPE (VALUES
+                             (FUNCTION (&REST NUMBER)
+                              (VALUES NUMBER &OPTIONAL))
+                             &OPTIONAL)>" -> "REF [3429630615962187]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
+"REF [3429630615962187]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LAMBDA-VAR [1191290977527232243]:
+arg-info: NIL
+flags: 0"[label="leaf"];
+"REF [3429630615962187]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "REF [3960466625097820739]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
+"REF [3960466625097820739]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LAMBDA-VAR [3773206468598114875]:
+arg-info: NIL
+flags: 0"[label="leaf"];
+"REF [3960466625097820739]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "COMBINATION [2542886683951928896]:
+kind: KNOWN
+info: #<VOP-INFO
+        :NAME SB-VM::GENERIC-+
+        :ARG-TYPES (* *)
+        :RESULT-TYPES (*)
+        :LTN-POLICY :SAFE
+        :COST 10>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
+"REF [3960466625097820739]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LVAR [468913931181215632]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"LVAR [468913931181215632]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL" -> "COMBINATION [2542886683951928896]:
+kind: KNOWN
+info: #<VOP-INFO
+        :NAME SB-VM::GENERIC-+
+        :ARG-TYPES (* *)
+        :RESULT-TYPES (*)
+        :LTN-POLICY :SAFE
+        :COST 10>"[label="dest"color="brown"];
+"LVAR [468913931181215632]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL" -> "REF [3960466625097820739]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="uses"];
+"REF [3429630615962187]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LVAR [431783048830770391]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"LVAR [431783048830770391]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL" -> "COMBINATION [2542886683951928896]:
+kind: KNOWN
+info: #<VOP-INFO
+        :NAME SB-VM::GENERIC-+
+        :ARG-TYPES (* *)
+        :RESULT-TYPES (*)
+        :LTN-POLICY :SAFE
+        :COST 10>"[label="dest"color="brown"];
+"LVAR [431783048830770391]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL" -> "REF [3429630615962187]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="uses"];
+"REF [3920794659018893621]:
+derived-type: #<VALUES-TYPE (VALUES
+                             (FUNCTION (&REST NUMBER)
+                              (VALUES NUMBER &OPTIONAL))
+                             &OPTIONAL)>" -> "LVAR [1619688607933610889]:
+%derived-type: #<VALUES-TYPE (VALUES
+                              (FUNCTION (&REST NUMBER)
+                               (VALUES NUMBER &OPTIONAL))
+                              &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"COMBINATION [2542886683951928896]:
+kind: KNOWN
+info: #<VOP-INFO
+        :NAME SB-VM::GENERIC-+
+        :ARG-TYPES (* *)
+        :RESULT-TYPES (*)
+        :LTN-POLICY :SAFE
+        :COST 10>" -> "LVAR [431783048830770391]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="args[# 0]"];
+"COMBINATION [2542886683951928896]:
+kind: KNOWN
+info: #<VOP-INFO
+        :NAME SB-VM::GENERIC-+
+        :ARG-TYPES (* *)
+        :RESULT-TYPES (*)
+        :LTN-POLICY :SAFE
+        :COST 10>" -> "LVAR [468913931181215632]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="args[# 1]"];
+"CBLOCK [4585696332871182801]" -> "CBLOCK [3645046891840945289]"[label="pred[# 0]"];
+"CBLOCK [4585696332871182801]" -> "ENTRY [1223961053981869168]:
+source-path ((BLOCK FOO (+ A B))
+             #'(NAMED-LAMBDA FOO
+                   (A B)
+                 (DECLARE (TOP-LEVEL-FORM))
+                 (BLOCK FOO (+ A B)))
+             (NAMED-LAMBDA FOO
+                 (A B)
+               (DECLARE (TOP-LEVEL-FORM))
+               (BLOCK FOO (+ A B)))
+             (%DEFUN 'FOO
+                     (NAMED-LAMBDA FOO
+                         (A B)
+                       (DECLARE (TOP-LEVEL-FORM))
+                       (BLOCK FOO (+ A B))))
+             (%DEFUN 'FOO
+                     (NAMED-LAMBDA FOO
+                         (A B)
+                       (DECLARE (TOP-LEVEL-FORM))
+                       (BLOCK FOO (+ A B))))
+             (PROGN
+              (EVAL-WHEN (COMPILE-TOPLEVEL) (%COMPILER-DEFUN 'FOO T NIL NIL))
+              (%DEFUN 'FOO
+                      (NAMED-LAMBDA FOO
+                          (A B)
+                        (DECLARE (TOP-LEVEL-FORM))
+                        (BLOCK FOO (+ A B)))))
+             ORIGINAL-SOURCE-START 0 0)"[label="start[ctran: BLOCK-START]"color="blue"];
+"ENTRY [1223961053981869168]:
+source-path ((BLOCK FOO (+ A B))
+             #'(NAMED-LAMBDA FOO
+                   (A B)
+                 (DECLARE (TOP-LEVEL-FORM))
+                 (BLOCK FOO (+ A B)))
+             (NAMED-LAMBDA FOO
+                 (A B)
+               (DECLARE (TOP-LEVEL-FORM))
+               (BLOCK FOO (+ A B)))
+             (%DEFUN 'FOO
+                     (NAMED-LAMBDA FOO
+                         (A B)
+                       (DECLARE (TOP-LEVEL-FORM))
+                       (BLOCK FOO (+ A B))))
+             (%DEFUN 'FOO
+                     (NAMED-LAMBDA FOO
+                         (A B)
+                       (DECLARE (TOP-LEVEL-FORM))
+                       (BLOCK FOO (+ A B))))
+             (PROGN
+              (EVAL-WHEN (COMPILE-TOPLEVEL) (%COMPILER-DEFUN 'FOO T NIL NIL))
+              (%DEFUN 'FOO
+                      (NAMED-LAMBDA FOO
+                          (A B)
+                        (DECLARE (TOP-LEVEL-FORM))
+                        (BLOCK FOO (+ A B)))))
+             ORIGINAL-SOURCE-START 0 0)" -> "NOT SUPPORTED YET:
+ NIL"[label="exits"];
+"ENTRY [1223961053981869168]:
+source-path ((BLOCK FOO (+ A B))
+             #'(NAMED-LAMBDA FOO
+                   (A B)
+                 (DECLARE (TOP-LEVEL-FORM))
+                 (BLOCK FOO (+ A B)))
+             (NAMED-LAMBDA FOO
+                 (A B)
+               (DECLARE (TOP-LEVEL-FORM))
+               (BLOCK FOO (+ A B)))
+             (%DEFUN 'FOO
+                     (NAMED-LAMBDA FOO
+                         (A B)
+                       (DECLARE (TOP-LEVEL-FORM))
+                       (BLOCK FOO (+ A B))))
+             (%DEFUN 'FOO
+                     (NAMED-LAMBDA FOO
+                         (A B)
+                       (DECLARE (TOP-LEVEL-FORM))
+                       (BLOCK FOO (+ A B))))
+             (PROGN
+              (EVAL-WHEN (COMPILE-TOPLEVEL) (%COMPILER-DEFUN 'FOO T NIL NIL))
+              (%DEFUN 'FOO
+                      (NAMED-LAMBDA FOO
+                          (A B)
+                        (DECLARE (TOP-LEVEL-FORM))
+                        (BLOCK FOO (+ A B)))))
+             ORIGINAL-SOURCE-START 0 0)" -> "NOT SUPPORTED YET:
+ #<CLEANUP :KIND :BLOCK :MESS-UP #<SB-C::ENTRY {100541F9F3}> {1005418B03}>"[label="cleanup"];
+"ENTRY [1223961053981869168]:
+source-path ((BLOCK FOO (+ A B))
+             #'(NAMED-LAMBDA FOO
+                   (A B)
+                 (DECLARE (TOP-LEVEL-FORM))
+                 (BLOCK FOO (+ A B)))
+             (NAMED-LAMBDA FOO
+                 (A B)
+               (DECLARE (TOP-LEVEL-FORM))
+               (BLOCK FOO (+ A B)))
+             (%DEFUN 'FOO
+                     (NAMED-LAMBDA FOO
+                         (A B)
+                       (DECLARE (TOP-LEVEL-FORM))
+                       (BLOCK FOO (+ A B))))
+             (%DEFUN 'FOO
+                     (NAMED-LAMBDA FOO
+                         (A B)
+                       (DECLARE (TOP-LEVEL-FORM))
+                       (BLOCK FOO (+ A B))))
+             (PROGN
+              (EVAL-WHEN (COMPILE-TOPLEVEL) (%COMPILER-DEFUN 'FOO T NIL NIL))
+              (%DEFUN 'FOO
+                      (NAMED-LAMBDA FOO
+                          (A B)
+                        (DECLARE (TOP-LEVEL-FORM))
+                        (BLOCK FOO (+ A B)))))
+             ORIGINAL-SOURCE-START 0 0)" -> "REF [3920794659018893621]:
+derived-type: #<VALUES-TYPE (VALUES
+                             (FUNCTION (&REST NUMBER)
+                              (VALUES NUMBER &OPTIONAL))
+                             &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
+"ENTRY [1223961053981869168]:
+source-path ((BLOCK FOO (+ A B))
+             #'(NAMED-LAMBDA FOO
+                   (A B)
+                 (DECLARE (TOP-LEVEL-FORM))
+                 (BLOCK FOO (+ A B)))
+             (NAMED-LAMBDA FOO
+                 (A B)
+               (DECLARE (TOP-LEVEL-FORM))
+               (BLOCK FOO (+ A B)))
+             (%DEFUN 'FOO
+                     (NAMED-LAMBDA FOO
+                         (A B)
+                       (DECLARE (TOP-LEVEL-FORM))
+                       (BLOCK FOO (+ A B))))
+             (%DEFUN 'FOO
+                     (NAMED-LAMBDA FOO
+                         (A B)
+                       (DECLARE (TOP-LEVEL-FORM))
+                       (BLOCK FOO (+ A B))))
+             (PROGN
+              (EVAL-WHEN (COMPILE-TOPLEVEL) (%COMPILER-DEFUN 'FOO T NIL NIL))
+              (%DEFUN 'FOO
+                      (NAMED-LAMBDA FOO
+                          (A B)
+                        (DECLARE (TOP-LEVEL-FORM))
+                        (BLOCK FOO (+ A B)))))
+             ORIGINAL-SOURCE-START 0 0)" -> "ENTRY [1223961053981869168]:
+source-path ((BLOCK FOO (+ A B))
+             #'(NAMED-LAMBDA FOO
+                   (A B)
+                 (DECLARE (TOP-LEVEL-FORM))
+                 (BLOCK FOO (+ A B)))
+             (NAMED-LAMBDA FOO
+                 (A B)
+               (DECLARE (TOP-LEVEL-FORM))
+               (BLOCK FOO (+ A B)))
+             (%DEFUN 'FOO
+                     (NAMED-LAMBDA FOO
+                         (A B)
+                       (DECLARE (TOP-LEVEL-FORM))
+                       (BLOCK FOO (+ A B))))
+             (%DEFUN 'FOO
+                     (NAMED-LAMBDA FOO
+                         (A B)
+                       (DECLARE (TOP-LEVEL-FORM))
+                       (BLOCK FOO (+ A B))))
+             (PROGN
+              (EVAL-WHEN (COMPILE-TOPLEVEL) (%COMPILER-DEFUN 'FOO T NIL NIL))
+              (%DEFUN 'FOO
+                      (NAMED-LAMBDA FOO
+                          (A B)
+                        (DECLARE (TOP-LEVEL-FORM))
+                        (BLOCK FOO (+ A B)))))
+             ORIGINAL-SOURCE-START 0 0)"[label="prev[ctran: BLOCK-START]"color="blue"];
+"CBLOCK [3645046891840945289]" -> "CBLOCK [3132410390524348494]"[label="pred[# 0]"];
+"CBLOCK [3645046891840945289]" -> "CBLOCK [4463300844594976231]"[label="pred[# 1]"];
+"CBLOCK [3132410390524348494]" -> "COMPONENT [NIL]: ''DEFUN FOO''"[label="component"];
+subgraph component_4 {
+}
+"CBLOCK [3132410390524348494]" -> "CBLOCK [3645046891840945289]"[label="succ[# 0]"];
+"CBLOCK [3132410390524348494]" -> "CBLOCK [4463300844594976231]"[label="pred[# 0]"];
+"CBLOCK [3132410390524348494]" -> "BIND [1868683755556548424]"[label="start[ctran: BLOCK-START]"color="blue"];
+"BIND [1868683755556548424]" -> "CLAMBDA [4522130993983688487]:
+%debug-name: (XEP FOO)
+source-name: .ANONYMOUS.
+kind: EXTERNAL"[label="lambda"];
+"CLAMBDA [4522130993983688487]:
+%debug-name: (XEP FOO)
+source-name: .ANONYMOUS.
+kind: EXTERNAL" -> "CLAMBDA [4522130993983688487]:
+%debug-name: (XEP FOO)
+source-name: .ANONYMOUS.
+kind: EXTERNAL"[label="home"];
+"CLAMBDA [4522130993983688487]:
+%debug-name: (XEP FOO)
+source-name: .ANONYMOUS.
+kind: EXTERNAL" -> "LAMBDA-VAR [1797708993266587011]:
+arg-info: NIL
+flags: 1"[label="vars[# 0]"];
+"CLAMBDA [4522130993983688487]:
+%debug-name: (XEP FOO)
+source-name: .ANONYMOUS.
+kind: EXTERNAL" -> "LAMBDA-VAR [1257227860039668832]:
+arg-info: NIL
+flags: 0"[label="vars[# 1]"];
+"CLAMBDA [4522130993983688487]:
+%debug-name: (XEP FOO)
+source-name: .ANONYMOUS.
+kind: EXTERNAL" -> "LAMBDA-VAR [996264033720555392]:
+arg-info: NIL
+flags: 0"[label="vars[# 2]"];
+"LAMBDA-VAR [1797708993266587011]:
+arg-info: NIL
+flags: 1" -> "CLAMBDA [4522130993983688487]:
+%debug-name: (XEP FOO)
+source-name: .ANONYMOUS.
+kind: EXTERNAL"[label="home"];
+"LAMBDA-VAR [1797708993266587011]:
+arg-info: NIL
+flags: 1" -> "NOT SUPPORTED YET:
+ NIL"[label="sets"];
+"LAMBDA-VAR [1257227860039668832]:
+arg-info: NIL
+flags: 0" -> "CLAMBDA [4522130993983688487]:
+%debug-name: (XEP FOO)
+source-name: .ANONYMOUS.
+kind: EXTERNAL"[label="home"];
+"LAMBDA-VAR [1257227860039668832]:
+arg-info: NIL
+flags: 0" -> "NOT SUPPORTED YET:
+ NIL"[label="sets"];
+"LAMBDA-VAR [996264033720555392]:
+arg-info: NIL
+flags: 0" -> "CLAMBDA [4522130993983688487]:
+%debug-name: (XEP FOO)
+source-name: .ANONYMOUS.
+kind: EXTERNAL"[label="home"];
+"LAMBDA-VAR [996264033720555392]:
+arg-info: NIL
+flags: 0" -> "NOT SUPPORTED YET:
+ NIL"[label="sets"];
+"BIND [1868683755556548424]" -> "REF [4105860786989280156]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="green"];
+"REF [4105860786989280156]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "CLAMBDA [626932464180012583]:
+%debug-name: NIL
+source-name: FOO
+kind: NIL"[label="leaf"];
+"REF [4105860786989280156]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "REF [1571189498553659483]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
+"REF [1571189498553659483]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LAMBDA-VAR [1257227860039668832]:
+arg-info: NIL
+flags: 0"[label="leaf"];
+"REF [1571189498553659483]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "REF [713705850130226051]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
+"REF [713705850130226051]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LAMBDA-VAR [996264033720555392]:
+arg-info: NIL
+flags: 0"[label="leaf"];
+"REF [713705850130226051]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "COMBINATION [2473501276508233401]:
+kind: LOCAL
+info: LOCAL"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
+"COMBINATION [2473501276508233401]:
+kind: LOCAL
+info: LOCAL" -> "LVAR [1272813157521016105]:
+%derived-type: NIL
+dynamic-extent: NIL"[label="fun"];
+"LVAR [1272813157521016105]:
+%derived-type: NIL
+dynamic-extent: NIL" -> "COMBINATION [2473501276508233401]:
+kind: LOCAL
+info: LOCAL"[label="dest"color="brown"];
+"LVAR [1272813157521016105]:
+%derived-type: NIL
+dynamic-extent: NIL" -> "REF [4105860786989280156]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>"[label="uses"];
+"COMBINATION [2473501276508233401]:
+kind: LOCAL
+info: LOCAL" -> "LVAR [4069032654282240166]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="args[# 0]"];
+"COMBINATION [2473501276508233401]:
+kind: LOCAL
+info: LOCAL" -> "LVAR [2333684150128875663]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="args[# 1]"];
+"LVAR [4069032654282240166]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL" -> "COMBINATION [2473501276508233401]:
+kind: LOCAL
+info: LOCAL"[label="dest"color="brown"];
+"LVAR [4069032654282240166]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL" -> "REF [1571189498553659483]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="uses"];
+"LVAR [2333684150128875663]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL" -> "COMBINATION [2473501276508233401]:
+kind: LOCAL
+info: LOCAL"[label="dest"color="brown"];
+"LVAR [2333684150128875663]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL" -> "REF [713705850130226051]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="uses"];
+"REF [713705850130226051]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LVAR [2333684150128875663]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"REF [1571189498553659483]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LVAR [4069032654282240166]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"REF [4105860786989280156]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "LVAR [1272813157521016105]:
+%derived-type: NIL
+dynamic-extent: NIL"[label="lvar"];
+"BIND [1868683755556548424]" -> "BIND [1868683755556548424]"[label="prev[ctran: BLOCK-START]"color="red"];
+"CBLOCK [3645046891840945289]" -> "BIND [1587579140048074586]"[label="start[ctran: BLOCK-START]"color="blue"];
+"BIND [1587579140048074586]" -> "CLAMBDA [626932464180012583]:
+%debug-name: NIL
+source-name: FOO
+kind: NIL"[label="lambda"];
+"BIND [1587579140048074586]" -> "NOT SUPPORTED YET:
+ NIL"[label="next"color="green"];
+"BIND [1587579140048074586]" -> "BIND [1587579140048074586]"[label="prev[ctran: BLOCK-START]"color="red"];
+"CBLOCK [4463300844594976231]" -> "NOT SUPPORTED YET:
+ NIL"[label="pred"];
+"CBLOCK [4463300844594976231]" -> "NOT SUPPORTED YET:
+ NIL"[label="start"];
+"COMPONENT [NIL]: ''DEFUN FOO''" -> "CBLOCK [1320847031603993339]"[label="tail"];
+}
+}

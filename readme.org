@@ -4,14 +4,31 @@
   Here's an [[./example-out.svg][example]] .svg file showing a render of the component
   created when compiling ~(defun foo () (+ 1 2))~.
 
-  As of now, it is stil unfinished. In particular, I don't have proper
-  output of all the node types that SBCL uses, and the interface is
-  not clean.
+  As of now, it is stil unfinished. There are a few tweaks that are
+  needed to improve useablility, in particular, I think the rendering
+  could be done a lot better, with subgraphs, to make it a lot more
+  readable. Also to make it more readable, I'm planning on
+  implementing rainbow-parens-esque arrow + label color randomization.
 
 ** How do I use it?
-   Right now, there is no real user-facing interface. As I've been
-   debugging, I've been hooking ~sb-c::compile-component~ with the
-   ~defhook~ macro that I defined in ~ir1-grapher.lisp~ and simply
-   grabbing the components that creates, and then calling ~(save-graph
-   (graph *component*) #p"./whatever.dot")~.
+   Because of the way it hooks in the compiler, you shouldn't actually
+   have to do anything except turning on trace output of the compiler
+   (SBCL). This can be done by calling ~(compile-file "file"
+   :trace-file t)~. After compilation is done, alongside the normal
+   trace file, SBCL is hooked into writing a series of .dot files,
+   which contain the graphviz DOT representation of all the components
+   compiled.
+
+** But what if the compiler breaks your library, or I want to muck around with it?
+   ~hooking.lisp~ contains all the code that is used to hook the
+   compiler directly, and ~graphing.lisp~ goes from the compiler data
+   structures to the graphviz DOT format.
+
+   Right now, I'm assuming that the only place that the compiler will
+   ever call ~sb-c::ir2-convert~ for each component is inside
+   ~%compile-component~, and only one time. If this becomes no longer
+   true, then the hooking location/manner will have to be modified.
   
+** Can I see an example?
+   Yes, look at the ~emample/~ folder. It contains the dot output
+   when running ~(compile-file "testfile" :trace-file t)~.
