@@ -35,13 +35,13 @@
 ;; (hook test-hook (a b c &rest d)
 ;;   (format t "This is a hook! ~A ~A ~A ~A~%" a b c d))
 ;; (unhook test-hook)
-;; (defhook sb-c::compile-toplevel (lambdas load-time-value-p)
+;; (hook sb-c::compile-toplevel (lambdas load-time-value-p)
 ;;   (format t "~%Hooking the compiler. compile-toplevel:~%lambdas: ~A~%load-time-value-p: ~A~%"
 ;;           lambdas load-time-value-p))
 ;; (unhook sb-c::compile-toplevel)
 ;; (eval-when (:compile-toplevel :load-toplevel)
 ;;   (defvar *acc* nil))
-;; (defhook sb-c::compile-component (component)
+;; (hook sb-c::compile-component (component)
 ;;   (push component *acc*))
 
 (eval-when (:compile-toplevel :load-toplevel)
