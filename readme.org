@@ -11,13 +11,26 @@
   implementing rainbow-parens-esque arrow + label color randomization.
 
 ** How do I use it?
+   To load the system, you can call ~(asdf:load-system
+   :ir1-grapher)~ once you have either loaded ~ir1-grapher.asd~
+   manually, or placed the folder inside your [[https://common-lisp.net/project/asdf/asdf/Configuring-ASDF-to-find-your-systems.html][ASDF load path]].
+
    Because of the way it hooks in the compiler, you shouldn't actually
-   have to do anything except turning on trace output of the compiler
-   (SBCL). This can be done by calling ~(compile-file "file"
-   :trace-file t)~. After compilation is done, alongside the normal
-   trace file, SBCL is hooked into writing a series of .dot files,
-   which contain the graphviz DOT representation of all the components
-   compiled.
+   have to do anything after loading it except turning on trace output
+   of the compiler (SBCL). This can be done by calling ~(compile-file
+   "file" :trace-file t)~. After compilation is done, alongside the
+   normal trace file, SBCL is hooked into writing a series of .dot
+   files, which contain the graphviz DOT representation of all the
+   components compiled. If you set ~*compile-progress*~ to ~T~, it
+   will print out progress information, and will tell you when and
+   where it writes out the graphviz files.
+
+** Help! It's saying there's a package locking error.
+   Run ~(sb-ext:unlock-package :sb-c)~ in the REPL, or compile SBCL
+   with ~--with-sb-devel~ (if you're doing compiler work, you should
+   probably do this anyways). In ~src/package.lisp~, there's a
+   ~(sb-ext:unlock-package :sb-c)~ statement, but it seems to not work
+   as expected. 
 
 ** But what if the compiler breaks your library, or I want to muck around with it?
    ~hooking.lisp~ contains all the code that is used to hook the
@@ -30,5 +43,5 @@
    true, then the hooking location/manner will have to be modified.
   
 ** Can I see an example?
-   Yes, look at the ~emample/~ folder. It contains the dot output
+   Yes, look at the ~example/~ folder. It contains the dot output
    when running ~(compile-file "testfile" :trace-file t)~.

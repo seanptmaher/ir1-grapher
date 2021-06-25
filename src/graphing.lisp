@@ -56,9 +56,10 @@
 ;; display goes from an object to the string representation that'll be
 ;; inside the graph nodes
 
-;; returns a new plist which is identical except the value
-;; associated with KEY has had func called on it
 
+;; modify-str-plist returns a new plist which is identical except the
+;; value associated with KEY has been replaced by what is returned by
+;; funcalling func on the value
 (defun modify-str-plist (plist key func)
   (assert (= 0 (mod (length plist) 2)))
   (apply #'nconc
