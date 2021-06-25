@@ -1,9 +1,6 @@
 * ir1-grapher
   This library graphs SBCL [[https://cmucl.org/docs/internals/html/The-Implicit-Continuation-Representation.html#The-Implicit-Continuation-Representation][ir1]] and outputs graphviz.
 
-  Here's an [[./example-out.svg][example]] .svg file showing a render of the component
-  created when compiling ~(defun foo () (+ 1 2))~.
-
   As of now, it is stil unfinished. There are a few tweaks that are
   needed to improve useablility, in particular, I think the rendering
   could be done a lot better, with subgraphs, to make it a lot more
@@ -41,6 +38,10 @@
    ever call ~sb-c::ir2-convert~ for each component is inside
    ~%compile-component~, and only one time. If this becomes no longer
    true, then the hooking location/manner will have to be modified.
+
+** After the ~.dot~ files get output, how do I render them?
+   ~dot -T<output-format> input.dot > output~.
+   For example, ~dot -Tsvg trace-1-DEFUNFOO.dot > out.svg~.
   
 ** Can I see an example?
    Yes, look at the ~example/~ folder. It contains the dot output
