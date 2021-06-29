@@ -32,13 +32,13 @@
   ((stream :initarg :stream :reader stream)
    (table :initarg :table :reader table)))
 
-(defmethod graph (object)
+(defmethod graph (object &optional (distance -1))
   (with-digraph (g)
-    (add g object)))
+    (add g object distance)))
 
-(defmethod subgraph ((graph graph) object)
+(defmethod subgraph ((graph graph) object &optional (distance -1))
   (with-subgraph (graph)
-    (add graph object)))
+    (add graph object distance)))
 
 (defun in-graph (graph object)
   (nth-value 1 (gethash object (table graph))))
@@ -55,7 +55,6 @@
 
 ;; display goes from an object to the string representation that'll be
 ;; inside the graph nodes
-
 
 ;; modify-str-plist returns a new plist which is identical except the
 ;; value associated with KEY has been replaced by what is returned by
@@ -200,14 +199,20 @@
 (defmethod display (obj)
   (format nil "NOT SUPPORTED YET:~% ~A" obj))
 
-(defmacro edge-and-add (graph from to &rest options)
+(defmacro edge-and-add (graph distance from to &rest options)
   (let ((g (gensym))
-        (tg (gensym)))
+        (tg (gensym))
+        (d (gensym)))
     `(let ((,g ,graph)
-           (,tg ,to))
-       (prog2
+           (,tg ,to)
+           (,d ,distance))
+       (if (= ,d 0)
            (edge ,g ,from ,tg ,@options)
-           (add ,g ,tg)))))
+           (prog2
+               (edge ,g ,from ,tg ,@options)
+               (add ,g ,tg (if (> ,d 0)
+                               (- ,d 1)
+                               ,d)))))))
 
 ;; this creates the wrapper used inside the add methods to only run
 ;; the edge-adding/recursing code if we've already seen this object
@@ -220,87 +225,87 @@
          (table-add ,g ,o)
          ,@body))))
 
-(defmethod add ((graph graph) (objects list))
-  (mapc #'(lambda (o) (add graph o)) objects))
+(defmethod add ((graph graph) (objects list) (distance integer))
+  (mapc #'(lambda (o) (add graph o distance)) objects))
 
 ;; a component should be rendered as a subgraph
-(defmethod add ((graph graph) (component sb-c::component))
+(defmethod add ((graph graph) (component sb-c::component) (distance integer))
   (unig (graph component)
     (with-subgraph (graph "component")
-      (edge-and-add graph component (sb-c::component-head component) "label" "head")
-      (edge-and-add graph component (sb-c::component-tail component) "label" "tail"))))
+      (edge-and-add graph distance component (sb-c::component-head component) "label" "head")
+      (edge-and-add graph distance component (sb-c::component-tail component) "label" "tail"))))
 
-(defmethod add ((graph graph) (cblock sb-c::cblock))
+(defmethod add ((graph graph) (cblock sb-c::cblock) (distance integer))
   (unig (graph cblock)
-    (edge-and-add graph cblock (sb-c::block-component cblock) "label" "component")
-    (edge-and-add graph cblock (sb-c::block-succ cblock) "label" "succ")
-    (edge-and-add graph cblock (sb-c::block-pred cblock) "label" "pred")
-    (edge-and-add graph cblock (sb-c::block-start cblock) "label" "start")))
+    (edge-and-add graph distance cblock (sb-c::block-component cblock) "label" "component")
+    (edge-and-add graph distance cblock (sb-c::block-succ cblock) "label" "succ")
+    (edge-and-add graph distance cblock (sb-c::block-pred cblock) "label" "pred")
+    (edge-and-add graph distance cblock (sb-c::block-start cblock) "label" "start")))
 
 ;; Unfinished
-(defmethod add ((graph graph) (cl sb-c::clambda))
+(defmethod add ((graph graph) (cl sb-c::clambda) (distance integer))
   (unig (graph cl)
-    (edge-and-add graph cl (sb-c::lambda-home cl) "label" "home")
-    (edge-and-add graph cl (sb-c::lambda-vars cl) "label" "vars")
+    (edge-and-add graph distance cl (sb-c::lambda-home cl) "label" "home")
+    (edge-and-add graph distance cl (sb-c::lambda-vars cl) "label" "vars")
     )
   )
 
-(defmethod add ((graph graph) (cr sb-c::creturn))
+(defmethod add ((graph graph) (cr sb-c::creturn) (distance integer))
   (unig (graph cr)
-    (edge-and-add graph cr (sb-c::return-lambda cr) "label" "lambda")
-    (edge-and-add graph cr (sb-c::return-result cr) "label" "result")))
+    (edge-and-add graph distance cr (sb-c::return-lambda cr) "label" "lambda")
+    (edge-and-add graph distance cr (sb-c::return-result cr) "label" "result")))
 
-;; (defmethod add ((graph graph) (node sb-c::node))
+;; (defmethod add ((graph graph) (node sb-c::node) (distance integer))
 ;;   )
 
 ;; this is just a dummy function to skip the CTRAN
-(defmethod add ((graph graph) (ct sb-c::ctran))
+(defmethod add ((graph graph) (ct sb-c::ctran) (distance integer))
   (unig (graph ct)
-    (add graph (sb-c::ctran-next ct))))
+    (add graph (sb-c::ctran-next ct) distance)))
 
-(defmethod add ((graph graph) (ref sb-c::ref))
+(defmethod add ((graph graph) (ref sb-c::ref) (distance integer))
   (unig (graph ref)
-    (edge-and-add graph ref (sb-c::ref-leaf ref) "label" "leaf")
-    (edge-and-add graph ref (sb-c::ref-next ref) "label" "next")
-    (edge-and-add graph ref (sb-c::ref-lvar ref) "label" "lvar")))
+    (edge-and-add graph distance ref (sb-c::ref-leaf ref) "label" "leaf")
+    (edge-and-add graph distance ref (sb-c::ref-next ref) "label" "next")
+    (edge-and-add graph distance ref (sb-c::ref-lvar ref) "label" "lvar")))
 
 
-(defmethod add ((graph graph) (bind sb-c::bind))
+(defmethod add ((graph graph) (bind sb-c::bind) (distance integer))
   (unig (graph bind)
-    (edge-and-add graph bind (sb-c::bind-lambda bind) "label" "lambda")
-    (edge-and-add graph bind (sb-c::bind-next bind) "label" "next" "color" "green")
-    (edge-and-add graph bind (sb-c::bind-prev bind) "label" "prev" "color" "red")))
+    (edge-and-add graph distance bind (sb-c::bind-lambda bind) "label" "lambda")
+    (edge-and-add graph distance bind (sb-c::bind-next bind) "label" "next" "color" "green")
+    (edge-and-add graph distance bind (sb-c::bind-prev bind) "label" "prev" "color" "red")))
 
-(defmethod add ((graph graph) (comb sb-c::combination))
+(defmethod add ((graph graph) (comb sb-c::combination) (distance integer))
   (unig (graph comb)
-    (edge-and-add graph comb (sb-c::combination-fun comb) "label" "fun")
-    (edge-and-add graph comb (sb-c::combination-args comb) "label" "args")))
+    (edge-and-add graph distance comb (sb-c::combination-fun comb) "label" "fun")
+    (edge-and-add graph distance comb (sb-c::combination-args comb) "label" "args")))
 
-(defmethod add ((graph graph) (lvar sb-c::lvar))
+(defmethod add ((graph graph) (lvar sb-c::lvar) (distance integer))
   (unig (graph lvar)
-    (edge-and-add graph lvar (sb-c::lvar-dest lvar) "label" "dest" "color" "brown")
-    (edge-and-add graph lvar (sb-c::lvar-uses lvar) "label" "uses")))
+    (edge-and-add graph distance lvar (sb-c::lvar-dest lvar) "label" "dest" "color" "brown")
+    (edge-and-add graph distance lvar (sb-c::lvar-uses lvar) "label" "uses")))
 
-(defmethod add ((graph graph) (lamvar sb-c::lambda-var))
+(defmethod add ((graph graph) (lamvar sb-c::lambda-var) (distance integer))
   (unig (graph lamvar)
-    (edge-and-add graph lamvar (sb-c::lambda-var-home lamvar) "label" "home")
-    (edge-and-add graph lamvar (sb-c::lambda-var-sets lamvar) "label" "sets")
+    (edge-and-add graph distance lamvar (sb-c::lambda-var-home lamvar) "label" "home")
+    (edge-and-add graph distance lamvar (sb-c::lambda-var-sets lamvar) "label" "sets")
     ))
 
-(defmethod add ((graph graph) (entry sb-c::entry))
+(defmethod add ((graph graph) (entry sb-c::entry) (distance integer))
   (unig (graph entry)
-    (edge-and-add graph entry (sb-c::entry-exits entry) "label" "exits")
-    (edge-and-add graph entry (sb-c::entry-cleanup entry) "label" "cleanup")
-    (edge-and-add graph entry (sb-c::entry-next entry) "label" "next")
-    (edge-and-add graph entry (sb-c::entry-prev entry) "label" "prev"))
+    (edge-and-add graph distance entry (sb-c::entry-exits entry) "label" "exits")
+    (edge-and-add graph distance entry (sb-c::entry-cleanup entry) "label" "cleanup")
+    (edge-and-add graph distance entry (sb-c::entry-next entry) "label" "next")
+    (edge-and-add graph distance entry (sb-c::entry-prev entry) "label" "prev"))
   )
 
 ;; I don't know whether it would be useful to have any information
-;; about constant values, but it can be added in here pretty (read:
-;; very) easily
-(defmethod add ((graph graph) (const sb-c::constant))
+;; about constant values, but it can be added in here pretty easily
+(defmethod add ((graph graph) (const sb-c::constant) (distance integer))
+  (declare (ignorable distance))
   (unig (graph const)))
 
-(defmethod add ((graph graph) object)
-  (declare (ignorable object))
+(defmethod add ((graph graph) object (distance integer))
+  (declare (ignorable object distance))
   (unig (graph object)))
