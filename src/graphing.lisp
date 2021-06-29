@@ -73,11 +73,17 @@
                          (setf plist (cddr plist))
                          v))))
 
+(defun clamp (str)
+  (if (< 16300 (length str))
+      (subseq str 0 16300)
+      str))
+
 (defmethod edge ((graph graph) from to &rest options)
   (assert (= 0 (mod (length options) 2)))
   (format (stream graph) "\"~A\" -> \"~A\"[~A];~%"
-          (cl-ppcre:regex-replace-all "\"" (display from) "'")
-          (cl-ppcre:regex-replace-all "\"" (display to) "'")
+          (cl-ppcre:regex-replace-all "\\\\" (cl-ppcre:regex-replace-all "\"" (clamp (display from)) "'") "\\\\\\\\")
+          (cl-ppcre:regex-replace-all "\\\\" (cl-ppcre:regex-replace-all "\"" (clamp (display to)) "'") "\\\\\\\\")
+          ;; (cl-ppcre:regex-replace-all "\"" (clamp (display to)) "'")
           (apply #'concatenate
                  (cons 'string
                        (loop with ck = nil
@@ -109,8 +115,8 @@
 ;;                          '("color" "yellow")))))
 
 (defmethod edge ((graph graph) from (to list) &rest options)
-  (when (null to)
-    (apply #'edge (nconc (list graph from "NIL") options)))
+  ;; (when (null to)
+  ;;   (apply #'edge (nconc (list graph from "NIL") options)))
   (let ((counter 0))
     (mapc #'(lambda (x)
               (apply #'edge
@@ -188,9 +194,8 @@
           (sb-c::lambda-var-flags lamvar)))
 
 (defmethod display ((entry sb-c::entry))
-  (format nil "ENTRY [~A]:~%source-path ~A"
-          (sxhash entry)
-          (sb-c::entry-source-path entry)))
+  (format nil "ENTRY [~A]:~%"
+          (sxhash entry)))
 
 (defmethod display (obj)
   (format nil "NOT SUPPORTED YET:~% ~A" obj))
@@ -220,8 +225,8 @@
 
 ;; a component should be rendered as a subgraph
 (defmethod add ((graph graph) (component sb-c::component))
-  (with-subgraph (graph "component")
-    (unig (graph component)
+  (unig (graph component)
+    (with-subgraph (graph "component")
       (edge-and-add graph component (sb-c::component-head component) "label" "head")
       (edge-and-add graph component (sb-c::component-tail component) "label" "tail"))))
 
