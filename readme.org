@@ -29,10 +29,10 @@
    still-in-memory code interactively, you can do so with the
    following functions:
    
-*** ~make-and-bfs~
+*** ~make-and-dfs~
     This function takes an ir1 object, and integer distance, and
-    returns a graph object with the BFS walk encoded in its
-    ~bfs-table~. Each object is tagged with a "codename", visible as a
+    returns a graph object with the DFS walk encoded in its
+    ~dfs-table~. Each object is tagged with a "codename", visible as a
     hex digit in braces at the start of each graph node.
     
     Then, to operate on the graph interactively, you can use:
@@ -48,7 +48,7 @@
     
 *** ~expand~
     After you've rendered the graph, if you want to add a node to the
-    bfs-table (thus expanding the amount of the in-memory objects
+    ~dfs-table~ (thus expanding the amount of the in-memory objects
     rendered), call this function with the codename of the new object
     you'd like to add. Example: ~(expand "A")~.
 
@@ -56,7 +56,7 @@
 
     
 *** ~render-graph~
-    Given a graph with objects in its ~bfs-table~, returns a string of
+    Given a graph with objects in its ~dfs-table~, returns a string of
     the rendering of the graph in DOT.
 
     Does the same thing as ~output~, but non-interactively. It takes a

@@ -4,4 +4,5 @@
 (defpackage :ir1-grapher
   (:shadow :stream)
   (:use :cl :cl-user)
-  (:export :defhook))
+  (:export :make-and-dfs :interactively-graph :output :expand
+           :render-graph :graph :make-graph :expand-graph-codename))
