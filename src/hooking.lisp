@@ -67,11 +67,11 @@
                     (format nil "trace-~A-~A" (incf *trace-number*)
                             (cl-ppcre:regex-replace-all
                              "[^a-zA-Z0-9-_.]"
-                             (apply #'nconc (let ((cn (sb-c::component-name component)))
-                                              (cond
-                                                ((symbolp cn) (list (symbol-name cn)))
-                                                ((stringp cn) (list cn))
-                                                ((listp cn) (maptree #'symbol-name cn)))))
+                             (let ((cn (sb-c::component-name component)))
+                               (cond
+                                 ((symbolp cn) (symbol-name cn))
+                                 ((stringp cn) cn)
+                                 ((listp cn) (format nil "~{~a~}" cn))))
                              ""))
                     :type "dot")))
       (save-graph (render-graph (make-and-bfs component 9999999)) out-pn)
