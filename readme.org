@@ -12,6 +12,10 @@
    :ir1-grapher)~ once you have either loaded ~ir1-grapher.asd~
    manually, or placed the folder inside your [[https://common-lisp.net/project/asdf/asdf/Configuring-ASDF-to-find-your-systems.html][ASDF load path]].
 
+   Then, depending on how you want to use it, you can do a few
+   things. If you only want to get output of the entire graph which
+   was produced during compilation, then read the following paragraph.
+   
    Because of the way it hooks in the compiler, you shouldn't actually
    have to do anything after loading it except turning on trace output
    of the compiler (SBCL). This can be done by calling ~(compile-file
@@ -21,6 +25,47 @@
    components compiled. If you set ~*compile-progress*~ to ~T~, it
    will print out progress information, and will tell you when and
    where it writes out the graphviz files.
+
+   If you ran into a compiler error, and want to graph the
+   still-in-memory code interactively, you can do so with the
+   following functions:
+   
+*** ~make-and-bfs~
+    This function takes an ir1 object, and integer distance, and
+    returns a graph object with the BFS walk encoded in its
+    ~bfs-table~. Each object is tagged with a "codename", visible as a
+    hex digit in braces at the start of each graph node.
+    
+    Then, to operate on the graph interactively, you can use:
+
+    
+*** ~interactively-graph~
+    This function takes a graph object, and sets the current working
+    graph to it.
+    
+*** ~output~
+    This function outputs the current working graph to a string, and
+    if passed a filename, writes it to that file.
+    
+*** ~expand~
+    After you've rendered the graph, if you want to add a node to the
+    bfs-table (thus expanding the amount of the in-memory objects
+    rendered), call this function with the codename of the new object
+    you'd like to add. Example: ~(expand "A")~.
+
+    Subsequent calls to ~output~ will then render that node as well.
+
+    
+*** ~render-graph~
+    Given a graph with objects in its ~bfs-table~, returns a string of
+    the rendering of the graph in DOT.
+
+    Does the same thing as ~output~, but non-interactively. It takes a
+    graph as a parameter.
+
+*** ~expand-graph-codename~
+    Does the same thing as ~expand~, but non-interactively. It takes a
+    graph and codename as parameter.
 
 ** Help! It's saying there's a package locking error.
    Run ~(sb-ext:unlock-package :sb-c)~ in the REPL, or compile SBCL
