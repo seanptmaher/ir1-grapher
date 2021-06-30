@@ -9,27 +9,10 @@
                  :codename-table (make-hash-table :test 'equal :size 63)
                  :codename-number 0))
 
-(defmacro with-digraph ((graph-sym) &body body)
-  `(let ((,graph-sym (make-graph)))
-     (progn
-       (write-string (format nil "digraph {~%") (stream ,graph-sym))
-       ,@body
-       (write-string "}" (stream ,graph-sym))
-       (values (get-output-stream-string (stream ,graph-sym))
-               ,graph-sym))))
-
-(eval-when (:compile-toplevel :load-toplevel)
-  (defparameter *subgraph-number* 0))
-
-(defmacro with-subgraph ((graph-sym &optional label) &body body)
-  `(progn (write-string ,(if label
-                            `(format nil "subgraph ~A_~A {~%"
-                                    ,label ,(incf *subgraph-number*))
-                            `(format nil "subgraph subgraph_~A {~%"
-                                    ,(incf *subgraph-number*)))
-                        (stream ,graph-sym))
-          ,@body
-          (format (stream ,graph-sym) "}~%")))
+(defun make-and-bfs (object distance)
+  (let ((graph (make-graph)))
+    (bfs-add graph distance object)
+    graph))
 
 (defun save-graph (str filename)
   (with-open-file (s filename :direction :output :if-does-not-exist :create :if-exists :supersede)
@@ -47,20 +30,6 @@
    (obj-table :initarg :obj-table :reader obj-table)
    (codename-table :initarg :codename-table :reader codename-table)
    (codename-number :initarg :codename-number :accessor codename-number)))
-
-(defmethod graph (object &optional (distance -1))
-  (with-digraph (g)
-    (add g object distance)))
-
-(defmethod subgraph ((graph graph) object &optional (distance -1))
-  (with-subgraph (graph)
-    (add graph object distance)))
-
-(defun in-graph (graph object)
-  (nth-value 1 (gethash object (table graph))))
-
-(defun table-add (graph object)
-  (setf (gethash object (table graph)) t))
 
 ;; In order to deal with cycles in the graph, we need to keep track of
 ;; the stuff we've already rendered. We're not going to recursively
