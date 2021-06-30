@@ -7,15 +7,11 @@
   readable. Also to make it more readable, I'm planning on
   implementing rainbow-parens-esque arrow + label color randomization.
 
-** How do I use it?
+** How do I use it during compiler tracing?
    To load the system, you can call ~(asdf:load-system
    :ir1-grapher)~ once you have either loaded ~ir1-grapher.asd~
    manually, or placed the folder inside your [[https://common-lisp.net/project/asdf/asdf/Configuring-ASDF-to-find-your-systems.html][ASDF load path]].
 
-   Then, depending on how you want to use it, you can do a few
-   things. If you only want to get output of the entire graph which
-   was produced during compilation, then read the following paragraph.
-   
    Because of the way it hooks in the compiler, you shouldn't actually
    have to do anything after loading it except turning on trace output
    of the compiler (SBCL). This can be done by calling ~(compile-file
@@ -25,6 +21,9 @@
    components compiled. If you set ~*compile-progress*~ to ~T~, it
    will print out progress information, and will tell you when and
    where it writes out the graphviz files.
+
+   
+** How do I use the system interactively?
 
    If you ran into a compiler error, and want to graph the
    still-in-memory code interactively, you can do so with the
