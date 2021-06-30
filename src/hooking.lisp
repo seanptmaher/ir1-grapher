@@ -74,7 +74,7 @@
                                                 ((listp cn) (maptree #'symbol-name cn)))))
                              ""))
                     :type "dot")))
-      (save-graph (graph component) out-pn)
+      (save-graph (render-graph (make-and-bfs component 9999999)) out-pn)
       (when sb-c::*compile-progress*
         (format *debug-io* "~%; Wrote graphviz of component ~A to ~A.~%" component out-pn))))
   (enable-hook sb-c::ir2-convert))

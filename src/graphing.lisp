@@ -31,6 +31,59 @@
    (codename-table :initarg :codename-table :reader codename-table)
    (codename-number :initarg :codename-number :accessor codename-number)))
 
+
+;; this creates the wrapper used inside the add methods to only run
+;; the edge-adding/recursing code if we've already seen this object
+(defmacro unig ((table obj) &body body)
+  (let ((tab (gensym))
+        (o (gensym)))
+    `(let ((,tab ,table)
+           (,o ,obj))
+       (unless (nth-value 1 (gethash ,o ,tab))
+         (setf (gethash ,o ,tab) t)
+         ,@body))))
+
+;; returns (values graph codeword-table)
+(defmethod render-graph (graph)
+  (get-output-stream-string (stream graph))
+  (setf (table graph) (make-hash-table :test 'eq :size 63))
+  (write-string (format nil "digraph {~%") (stream graph))
+  (maphash #'(lambda (k v) (declare (ignore v)) (edges graph k)) (bfs-table graph))
+  (write-string "}" (stream graph))
+  (get-output-stream-string (stream graph)))
+
+;; RENDER-GRAPH goes through all the nodes in BFS-TABLE, so we add the
+;; node corresponding to the given codename to the graph's BFS-TABLE
+(defmethod expand-graph-codename (graph codename)
+  (setf (gethash (gethash codename (codename-table graph))
+                 (bfs-table graph))
+        t))
+
+;; creates a new codename, ties it to this object, then returns it.
+(defun add-to-code-tables (graph object)
+  (if (nth-value 1 (gethash object (obj-table graph)))
+      (gethash object (obj-table graph))
+      (let ((new-codename (let ((res (format nil "~X" (codename-number graph))))
+                            (incf (codename-number graph))
+                            res)))
+        (setf (gethash object (obj-table graph))
+              new-codename
+              (gethash new-codename (codename-table graph))
+              object)
+        new-codename)))
+
+(let ((curr-graph nil))
+  (defun interactively-graph (graph)
+    (setf curr-graph graph))
+  (defun output (&optional (file nil))
+    (if file
+        (prog2 (Format t "ah") (save-graph (render-graph curr-graph) file))
+        (render-graph curr-graph)))
+  (defun expand (codename)
+    (setf (gethash (gethash codename (codename-table curr-graph))
+                   (bfs-table curr-graph))
+          t)))
+
 ;; In order to deal with cycles in the graph, we need to keep track of
 ;; the stuff we've already rendered. We're not going to recursively
 ;; add something that is already present in the graph into the graph,
@@ -174,62 +227,6 @@
 (defmethod display (obj)
   (format nil "NOT SUPPORTED YET:~% ~A" obj))
 
-;; New way to do this is to have two tables:
-
-;; rec-table -> contains all the nodes from which to recurse
-;; codenames -> goes from randomly generated bite to nodes in order to interactively expand
-
-;; this creates the wrapper used inside the add methods to only run
-;; the edge-adding/recursing code if we've already seen this object
-(defmacro unig ((table obj) &body body)
-  (let ((tab (gensym))
-        (o (gensym)))
-    `(let ((,tab ,table)
-           (,o ,obj))
-       (unless (nth-value 1 (gethash ,o ,tab))
-         (setf (gethash ,o ,tab) t)
-         ,@body))))
-
-;; returns (values graph codeword-table)
-(defmethod render-graph (graph)
-  (get-output-stream-string (stream graph))
-  (setf (table graph) (make-hash-table :test 'eq :size 63))
-  (write-string (format nil "digraph {~%") (stream graph))
-  (maphash #'(lambda (k v) (declare (ignore v)) (edges graph k)) (bfs-table graph))
-  (write-string "}" (stream graph))
-  (get-output-stream-string (stream graph)))
-
-(defmethod expand-graph-codename (graph codename)
-  (setf (gethash (gethash codename (codename-table graph))
-                 (bfs-table graph))
-        t))
-
-(defun add-to-code-tables (graph object)
-  (if (nth-value 1 (gethash object (obj-table graph)))
-      (gethash object (obj-table graph))
-      (let ((new-codename (new-codename graph)))
-        (setf (gethash object (obj-table graph))
-              new-codename
-              (gethash new-codename (codename-table graph))
-              object)
-        new-codename)))
-
-(defun new-codename (graph)
-  (let ((res (format nil "~X" (codename-number graph))))
-    (incf (codename-number graph))
-    res))
-
-(let ((curr-graph nil))
-  (defun interactively-graph (graph)
-    (setf curr-graph graph))
-  (defun output (&optional (file nil))
-    (if file
-        (prog2 (Format t "ah") (save-graph (render-graph curr-graph) file))
-        (render-graph curr-graph)))
-  (defun expand (codename)
-    (setf (gethash (gethash codename (codename-table curr-graph))
-                   (bfs-table curr-graph))
-          t)))
 
 ;; need way to simply output edges, adding is not done.
 
