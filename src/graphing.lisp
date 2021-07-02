@@ -18,35 +18,18 @@
   (with-open-file (s filename :direction :output :if-does-not-exist :create :if-exists :supersede)
     (write-string str s))) 
 
-(defparameter *test-component* nil)
-
-;; table: obj -> bool
+;; dfs-table: obj -> T
 ;; obj-table: obj -> codename
 ;; codename-table: codename -> obj
 (defclass graph ()
   ((stream :initarg :stream :accessor stream)
-   (table :initarg :table :accessor table)
    (dfs-table :initarg :dfs-table :reader dfs-table)
    (obj-table :initarg :obj-table :reader obj-table)
    (codename-table :initarg :codename-table :reader codename-table)
    (codename-number :initarg :codename-number :accessor codename-number)))
 
-
-;; this creates the wrapper used inside the add methods to only run
-;; the edge-adding/recursing code if we've already seen this object
-(defmacro unig ((table obj) &body body)
-  (let ((tab (gensym))
-        (o (gensym)))
-    `(let ((,tab ,table)
-           (,o ,obj))
-       (unless (nth-value 1 (gethash ,o ,tab))
-         (setf (gethash ,o ,tab) t)
-         ,@body))))
-
-;; returns (values graph codeword-table)
 (defmethod render-graph (graph)
   (get-output-stream-string (stream graph))
-  (setf (table graph) (make-hash-table :test 'eq :size 63))
   (write-string (format nil "digraph {~%") (stream graph))
   (maphash #'(lambda (k v) (declare (ignore v)) (edges graph k)) (dfs-table graph))
   (write-string "}" (stream graph))
@@ -54,7 +37,7 @@
 
 ;; RENDER-GRAPH goes through all the nodes in DFS-TABLE, so we add the
 ;; node corresponding to the given codename to the graph's DFS-TABLE
-(defmethod expand-graph-codename (graph codename)
+(defmethod expand-codename (graph codename)
   (setf (gethash (gethash codename (codename-table graph))
                  (dfs-table graph))
         t))
@@ -77,22 +60,10 @@
     (setf curr-graph graph))
   (defun output (&optional (file nil))
     (if file
-        (prog2 (Format t "ah") (save-graph (render-graph curr-graph) file))
+        (save-graph (render-graph curr-graph) file)
         (render-graph curr-graph)))
   (defun expand (codename)
-    (setf (gethash (gethash codename (codename-table curr-graph))
-                   (dfs-table curr-graph))
-          t)))
-
-;; In order to deal with cycles in the graph, we need to keep track of
-;; the stuff we've already rendered. We're not going to recursively
-;; add something that is already present in the graph into the graph,
-;; we're just going to add the lines from the current object to them.
-;; The stuff to keep track of this is inside of the graph class. The
-;; table is just going to store whether we've seen the key yet.
-
-;; display goes from an object to the string representation that'll be
-;; inside the graph nodes
+    (expand-codename curr-graph codename)))
 
 ;; modify-str-plist returns a new plist which is identical except the
 ;; value associated with KEY has been replaced by what is returned by
@@ -110,6 +81,8 @@
                          (setf plist (cddr plist))
                          v))))
 
+;; this is because graphviz doesn't allow nodes to have more than 16k
+;; of text in them
 (defun clamp (str)
   (if (< 16300 (length str))
       (subseq str 0 16300)
@@ -126,7 +99,6 @@
               (gethash to (obj-table graph))
               (add-to-code-tables graph to))
           (cl-ppcre:regex-replace-all "\\\\" (cl-ppcre:regex-replace-all "\"" (clamp (display to)) "'") "\\\\\\\\")
-          ;; (cl-ppcre:regex-replace-all "\"" (clamp (display to)) "'")
           (apply #'concatenate
                  (cons 'string
                        (loop with ck = nil
@@ -148,8 +120,6 @@
 
 
 (defmethod edge ((graph graph) from (to list) &rest options)
-  ;; (when (null to)
-  ;;   (apply #'edge (nconc (list graph from "NIL") options)))
   (let ((counter 0))
     (mapc #'(lambda (x)
               (apply #'edge
@@ -162,6 +132,9 @@
                                    (incf counter)
                                    res))))))
           to)))
+
+;; display goes from an object to the string representation that'll be
+;; inside the graph nodes
 
 (defmethod display ((c sb-c::component))
   (format nil "COMPONENT [~A]: '~S'"
@@ -228,89 +201,70 @@
   (format nil "NOT SUPPORTED YET:~% ~A" obj))
 
 
-;; need way to simply output edges, adding is not done.
-
 (defmethod edges ((graph graph) (objects list))
   (mapc #'(lambda (o) (edges graph o)) objects))
 
-;; a component should be rendered as a subgraph
 (defmethod edges ((graph graph) (component sb-c::component))
-  (unig ((table graph) component)
-    (edge graph component (sb-c::component-head component) "label" "head")
-    (edge graph component (sb-c::component-tail component) "label" "tail")))
+  (edge graph component (sb-c::component-head component) "label" "head")
+  (edge graph component (sb-c::component-tail component) "label" "tail"))
 
 (defmethod edges ((graph graph) (cblock sb-c::cblock))
-  (unig ((table graph) cblock)
-    (edge graph cblock (sb-c::block-component cblock) "label" "component")
-    (edge graph cblock (sb-c::block-succ cblock) "label" "succ")
-    (edge graph cblock (sb-c::block-pred cblock) "label" "pred")
-    (edge graph cblock (sb-c::block-start cblock) "label" "start")))
+  (edge graph cblock (sb-c::block-component cblock) "label" "component")
+  (edge graph cblock (sb-c::block-succ cblock) "label" "succ")
+  (edge graph cblock (sb-c::block-pred cblock) "label" "pred")
+  (edge graph cblock (sb-c::block-start cblock) "label" "start"))
 
 ;; Unfinished
 (defmethod edges ((graph graph) (cl sb-c::clambda))
-  (unig ((table graph) cl)
-    (edge graph cl (sb-c::lambda-home cl) "label" "home")
-    (edge graph cl (sb-c::lambda-vars cl) "label" "vars")))
+  (edge graph cl (sb-c::lambda-home cl) "label" "home")
+  (edge graph cl (sb-c::lambda-vars cl) "label" "vars"))
 
 (defmethod edges ((graph graph) (cr sb-c::creturn))
-  (unig ((table graph) cr)
-    (edge graph cr (sb-c::return-lambda cr) "label" "lambda")
-    (edge graph cr (sb-c::return-result cr) "label" "result")))
-
-;; (defmethod edges ((graph graph) (node sb-c::node))
-;;   )
+  (edge graph cr (sb-c::return-lambda cr) "label" "lambda")
+  (edge graph cr (sb-c::return-result cr) "label" "result"))
 
 ;; this is just a dummy function to skip the CTRAN
-(defmethod edges ((graph graph) (ct sb-c::ctran))
-  (unig ((table graph) ct)
-    ))
+(defmethod edges ((graph graph) (ct sb-c::ctran)))
 
 (defmethod edges ((graph graph) (ref sb-c::ref))
-  (unig ((table graph) ref)
-    (edge graph ref (sb-c::ref-leaf ref) "label" "leaf")
-    (edge graph ref (sb-c::ref-next ref) "label" "next")
-    (edge graph ref (sb-c::ref-lvar ref) "label" "lvar")))
+  (edge graph ref (sb-c::ref-leaf ref) "label" "leaf")
+  (edge graph ref (sb-c::ref-next ref) "label" "next")
+  (edge graph ref (sb-c::ref-lvar ref) "label" "lvar"))
 
 (defmethod edges ((graph graph) (bind sb-c::bind))
-  (unig ((table graph) bind)
-    (edge graph bind (sb-c::bind-lambda bind) "label" "lambda")
-    (edge graph bind (sb-c::bind-next bind) "label" "next" "color" "green")
-    (edge graph bind (sb-c::bind-prev bind) "label" "prev" "color" "red")))
+  (edge graph bind (sb-c::bind-lambda bind) "label" "lambda")
+  (edge graph bind (sb-c::bind-next bind) "label" "next" "color" "green")
+  (edge graph bind (sb-c::bind-prev bind) "label" "prev" "color" "red"))
 
 (defmethod edges ((graph graph) (comb sb-c::combination))
-  (unig ((table graph) comb)
-    (edge graph comb (sb-c::combination-fun comb) "label" "fun")
-    (edge graph comb (sb-c::combination-args comb) "label" "args")))
+  (edge graph comb (sb-c::combination-fun comb) "label" "fun")
+  (edge graph comb (sb-c::combination-args comb) "label" "args"))
 
 (defmethod edges ((graph graph) (lvar sb-c::lvar))
-  (unig ((table graph) lvar)
-    (edge graph lvar (sb-c::lvar-dest lvar) "label" "dest" "color" "brown")
-    (edge graph lvar (sb-c::lvar-uses lvar) "label" "uses")))
+  (edge graph lvar (sb-c::lvar-dest lvar) "label" "dest" "color" "brown")
+  (edge graph lvar (sb-c::lvar-uses lvar) "label" "uses"))
 
 (defmethod edges ((graph graph) (lamvar sb-c::lambda-var))
-  (unig ((table graph) lamvar)
-    (edge graph lamvar (sb-c::lambda-var-home lamvar) "label" "home")
-    (edge graph lamvar (sb-c::lambda-var-sets lamvar) "label" "sets")))
+  (edge graph lamvar (sb-c::lambda-var-home lamvar) "label" "home")
+  (edge graph lamvar (sb-c::lambda-var-sets lamvar) "label" "sets"))
 
 (defmethod edges ((graph graph) (entry sb-c::entry))
-  (unig ((table graph) entry)
-    (edge graph entry (sb-c::entry-exits entry) "label" "exits")
-    (edge graph entry (sb-c::entry-cleanup entry) "label" "cleanup")
-    (edge graph entry (sb-c::entry-next entry) "label" "next")
-    (edge graph entry (sb-c::entry-prev entry) "label" "prev")))
+  (edge graph entry (sb-c::entry-exits entry) "label" "exits")
+  (edge graph entry (sb-c::entry-cleanup entry) "label" "cleanup")
+  (edge graph entry (sb-c::entry-next entry) "label" "next")
+  (edge graph entry (sb-c::entry-prev entry) "label" "prev"))
 
-(defmethod edges ((graph graph) object)
-  (unig ((table graph) object)))
+(defmethod edges ((graph graph) object))
 
-(defmacro dfs-unig ((graph obj) &body body)
+;; the name is a "pun" of the words 'unique' and 'graph'
+(defmacro unig ((graph obj) &body body)
   (let ((g (gensym))
         (o (gensym)))
     `(let ((,g ,graph)
            (,o ,obj))
        (unless (nth-value 1 (gethash ,o (dfs-table ,g)))
          (setf (gethash ,o (dfs-table ,g)) t)
-         ,@body)))
-  )
+         ,@body))))
 
 (defmethod dfs-add ((graph graph) (distance integer) (objects list))
   (mapc #'(lambda (o) (dfs-add graph distance o)) objects))
@@ -319,14 +273,14 @@
 (defmethod dfs-add ((graph graph) (distance integer) (component sb-c::component))
   (when (> distance 0)
     (decf distance)
-    (dfs-unig (graph component)
+    (unig (graph component)
       (dfs-add graph distance (sb-c::component-head component))
       (dfs-add graph distance (sb-c::component-tail component)))))
 
 (defmethod dfs-add ((graph graph) (distance integer) (cblock sb-c::cblock))
   (when (> distance 0)
     (decf distance)
-    (dfs-unig (graph cblock)
+    (unig (graph cblock)
       (dfs-add graph distance (sb-c::block-component cblock))
       (dfs-add graph distance (sb-c::block-succ cblock))
       (dfs-add graph distance (sb-c::block-pred cblock))
@@ -336,32 +290,31 @@
 (defmethod dfs-add ((graph graph) (distance integer) (cl sb-c::clambda))
   (when (> distance 0)
     (decf distance)
-    (dfs-unig (graph cl)
+    (unig (graph cl)
       (dfs-add graph distance (sb-c::lambda-home cl))
-      (dfs-add graph distance (sb-c::lambda-vars cl)))
-    )
-  )
+      (dfs-add graph distance (sb-c::lambda-vars cl)))))
 
 (defmethod dfs-add ((graph graph) (distance integer) (cr sb-c::creturn))
   (when (> distance 0)
     (decf distance)
-    (dfs-unig (graph cr)
+    (unig (graph cr)
       (dfs-add graph distance (sb-c::return-lambda cr))
       (dfs-add graph distance (sb-c::return-result cr)))))
 
 ;; (defmethod dfs-add ((graph graph) (distance integer) (node sb-c::node))
 ;;   )
 
-;; this is just a dummy function to skip the CTRAN
+;; this is just a dummy function to skip the CTRAN. Note that it
+;; doesn't decf distance.
 (defmethod dfs-add ((graph graph) (distance integer) (ct sb-c::ctran))
   (when (> distance 0)
-    (dfs-unig (graph ct)
+    (unig (graph ct)
       (dfs-add graph distance (sb-c::ctran-next ct)))))
 
 (defmethod dfs-add ((graph graph) (distance integer) (ref sb-c::ref))
   (when (> distance 0)
     (decf distance)
-    (dfs-unig (graph ref)
+    (unig (graph ref)
       (dfs-add graph distance (sb-c::ref-leaf ref))
       (dfs-add graph distance (sb-c::ref-next ref))
       (dfs-add graph distance (sb-c::ref-lvar ref)))))
@@ -369,7 +322,7 @@
 (defmethod dfs-add ((graph graph) (distance integer) (bind sb-c::bind))
   (when (> distance 0)
     (decf distance)
-    (dfs-unig (graph bind)
+    (unig (graph bind)
       (dfs-add graph distance (sb-c::bind-lambda bind))
       (dfs-add graph distance (sb-c::bind-next bind))
       (dfs-add graph distance (sb-c::bind-prev bind)))))
@@ -377,36 +330,34 @@
 (defmethod dfs-add ((graph graph) (distance integer) (comb sb-c::combination))
   (when (> distance 0)
     (decf distance)
-    (dfs-unig (graph comb)
+    (unig (graph comb)
       (dfs-add graph distance (sb-c::combination-fun comb))
       (dfs-add graph distance (sb-c::combination-args comb)))))
 
 (defmethod dfs-add ((graph graph) (distance integer) (lvar sb-c::lvar))
   (when (> distance 0)
     (decf distance)
-    (dfs-unig (graph lvar)
+    (unig (graph lvar)
       (dfs-add graph distance (sb-c::lvar-dest lvar))
       (dfs-add graph distance (sb-c::lvar-uses lvar)))))
 
 (defmethod dfs-add ((graph graph) (distance integer) (lamvar sb-c::lambda-var))
   (when (> distance 0)
     (decf distance)
-    (dfs-unig (graph lamvar)
+    (unig (graph lamvar)
       (dfs-add graph distance (sb-c::lambda-var-home lamvar))
-      (dfs-add graph distance (sb-c::lambda-var-sets lamvar)))
-    ))
+      (dfs-add graph distance (sb-c::lambda-var-sets lamvar)))))
 
 (defmethod dfs-add ((graph graph) (distance integer) (entry sb-c::entry))
   (when (> distance 0)
     (decf distance)
-    (dfs-unig (graph entry)
+    (unig (graph entry)
       (dfs-add graph distance (sb-c::entry-exits entry))
       (dfs-add graph distance (sb-c::entry-cleanup entry))
       (dfs-add graph distance (sb-c::entry-next entry))
-      (dfs-add graph distance (sb-c::entry-prev entry))))
-  )
+      (dfs-add graph distance (sb-c::entry-prev entry)))))
 
 (defmethod dfs-add ((graph graph) (distance integer) object)
   (when (> distance 0)
     (decf distance)
-    (dfs-unig (graph object))))
+    (unig (graph object))))

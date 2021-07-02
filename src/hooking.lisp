@@ -47,16 +47,6 @@
 (eval-when (:compile-toplevel :load-toplevel)
   (defvar *trace-number* 0))
 
-(defun maptree (fun tree)
-  (cond
-    ((consp tree)
-     (cons (maptree fun (car tree))
-           (maptree fun (cdr tree))))
-    ((null tree)
-     nil)
-    (t
-     (funcall fun tree))))
-
 (hook sb-c::ir2-convert (component)
   (disable-hook sb-c::ir2-convert)
   (when (streamp sb-c::*compiler-trace-output*)
