@@ -24,47 +24,69 @@
 
    
 ** How do I use the system interactively?
-
    If you ran into a compiler error, and want to graph the
    still-in-memory code interactively, you can do so with the
    following functions:
    
-*** ~make-and-dfs~
-    This function takes an ir1 object, and integer distance, and
-    returns a graph object with the DFS walk encoded in its
-    ~dfs-table~. Each object is tagged with a "codename", visible as a
-    hex digit in braces at the start of each graph node.
+*** ~(make-and-dfs object distance)~
+    This function takes an ir1 object ~object~, and integer
+    ~distance~, and returns a graph object with every node up to
+    ~distance~ hops away from ~object~ in its ~dfs-table~. Each object
+    is tagged with a "codename", visible as a hex digit in braces at
+    the start of each graph node.
     
     Then, to operate on the graph interactively, you can use:
-
     
-*** ~interactively-graph~
-    This function takes a graph object, and sets the current working
-    graph to it.
+*** ~(interactively-graph graph &optional filename)~
+    This function takes a ~graph~ and a ~filename~, and sets the
+    current working graph to it, and the current output file to the
+    filename. When calling ~output~ and ~expand~, the graph will be
+    written to ~filename~.
     
-*** ~output~
+*** ~(output)~
     This function outputs the current working graph to a string, and
-    if passed a filename, writes it to that file.
+    if ~interactively-graph~ was called with a filename, writes it to
+    that file.
     
-*** ~expand~
+*** ~(expand codename)~
     After you've rendered the graph, if you want to add a node to the
     ~dfs-table~ (thus expanding the amount of the in-memory objects
     rendered), call this function with the codename of the new object
     you'd like to add. Example: ~(expand "A")~.
 
-    Subsequent calls to ~output~ will then render that node as well.
+    If you passed a filename to ~interactively-graph~, this function
+    will then write the render to file automatically.
 
+*** ~(get-node codename)~
+    Returns the object tied to ~codename~ from the current interactive
+    graph.
     
-*** ~render-graph~
+** And if you don't want to use ~interactively-graph~:
+*** ~(render-graph graph)~
     Given a graph with objects in its ~dfs-table~, returns a string of
     the rendering of the graph in DOT.
 
-    Does the same thing as ~output~, but non-interactively. It takes a
-    graph as a parameter.
+    Does the same thing as ~output~, but without using
+    ~interactively-graph~.
 
-*** ~expand-graph-codename~
-    Does the same thing as ~expand~, but non-interactively. It takes a
-    graph and codename as parameter.
+*** ~(expand-graph-codename graph codename)~
+    Given a graph and codename, put the node tied to ~codename~ into
+    the ~dfs-table~ of the graph. 
+
+    Does the same thing as ~expand~, but without using
+    ~interactively-graph~.
+
+*** ~(get-node-from-codename graph codename)~
+    Return the node tied to ~codename~ in ~graph~.
+
+    Does the same thing as ~node~, but without using
+    ~interactively-graph~.
+    
+** What good is ~interactively-graph~ if I need to run ~dot~ every time the graph gets output?
+   That's where ~render-on-change.sh~ comes in. Run
+   ~render-on-change.sh~ with two arguments. First is the input DOT
+   file, and second is the output SVG file. If you want to export to a
+   different format, just modify the ~-Tsvg~ of the script.
 
 ** Help! It's saying there's a package locking error.
    Run ~(sb-ext:unlock-package :sb-c)~ in the REPL, or compile SBCL
