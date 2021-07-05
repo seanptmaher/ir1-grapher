@@ -2,7 +2,6 @@
 
 (defun make-graph ()
   (make-instance 'graph
-                 :table (make-hash-table :test 'eq :size 63)
                  :stream (make-string-output-stream)
                  :dfs-table (make-hash-table :test 'eq :size 63)
                  :obj-table (make-hash-table :test 'eq :size 63)
@@ -41,6 +40,9 @@
   (setf (gethash (gethash codename (codename-table graph))
                  (dfs-table graph))
         t))
+(defun get-node-from-codename (graph codename)
+  (gethash codename (codename-table graph)))
+
 
 ;; creates a new codename, ties it to this object, then returns it.
 (defun add-to-code-tables (graph object)
@@ -55,15 +57,25 @@
               object)
         new-codename)))
 
-(let ((curr-graph nil))
-  (defun interactively-graph (graph)
-    (setf curr-graph graph))
-  (defun output (&optional (file nil))
-    (if file
-        (save-graph (render-graph curr-graph) file)
+(let ((curr-graph nil)
+      (curr-file nil))
+  (defun interactively-graph (graph &optional (filename nil))
+    (setf curr-graph graph)
+    (setf curr-file filename))
+
+  (defun output () 
+    (if curr-file
+        (save-graph (render-graph curr-graph) curr-file)
         (render-graph curr-graph)))
+
   (defun expand (codename)
-    (expand-codename curr-graph codename)))
+    (expand-codename curr-graph codename)
+    (when curr-file
+      (output)))
+
+  (defun get-node (codename)
+    (get-node-from-codename curr-graph codename)))
+
 
 ;; modify-str-plist returns a new plist which is identical except the
 ;; value associated with KEY has been replaced by what is returned by
