@@ -40,9 +40,9 @@
   (setf (gethash (gethash codename (codename-table graph))
                  (dfs-table graph))
         t))
+
 (defun get-node-from-codename (graph codename)
   (gethash codename (codename-table graph)))
-
 
 ;; creates a new codename, ties it to this object, then returns it.
 (defun add-to-code-tables (graph object)
@@ -100,17 +100,33 @@
       (subseq str 0 16300)
       str))
 
+;; This was copied from the common lisp cookbook.
+(defun replace-all (string part replacement &key (test #'char=))
+  "Returns a new string in which all the occurences of the part 
+is replaced with replacement."
+  (with-output-to-string (out)
+    (loop with part-length = (length part)
+          for old-pos = 0 then (+ pos part-length)
+          for pos = (search part string
+                            :start2 old-pos
+                            :test test)
+          do (write-string string out
+                           :start old-pos
+                           :end (or pos (length string)))
+          when pos do (write-string replacement out)
+          while pos)))
+
 (defmethod edge ((graph graph) from to &rest options)
   (assert (= 0 (mod (length options) 2)))
   (format (stream graph) "\"{~A} ~A\" -> \"{~A} ~A\"[~A];~%"
           (if (gethash from (obj-table graph))
               (gethash from (obj-table graph))
               (add-to-code-tables graph from))
-          (cl-ppcre:regex-replace-all "\\\\" (cl-ppcre:regex-replace-all "\"" (clamp (display from)) "'") "\\\\\\\\")
+          (replace-all (replace-all (clamp (display from)) "\"" "'") "\\" "\\\\")
           (if (gethash to (obj-table graph))
               (gethash to (obj-table graph))
               (add-to-code-tables graph to))
-          (cl-ppcre:regex-replace-all "\\\\" (cl-ppcre:regex-replace-all "\"" (clamp (display to)) "'") "\\\\\\\\")
+          (replace-all (replace-all (clamp (display to)) "\"" "'") "\\" "\\\\")
           (apply #'concatenate
                  (cons 'string
                        (loop with ck = nil
