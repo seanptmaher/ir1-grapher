@@ -55,14 +55,29 @@
                     :directory (pathname-directory pn)
                     :name
                     (format nil "trace-~A-~A" (incf *trace-number*)
-                            (cl-ppcre:regex-replace-all
-                             "[^a-zA-Z0-9-_.]"
-                             (let ((cn (sb-c::component-name component)))
-                               (cond
-                                 ((symbolp cn) (symbol-name cn))
-                                 ((stringp cn) cn)
-                                 ((listp cn) (format nil "~{~a~}" cn))))
-                             ""))
+                            (coerce (loop for char
+                                            across
+                                            (let ((cn (sb-c::component-name component)))
+                                              (cond
+                                                ((symbolp cn) (symbol-name cn))
+                                                ((stringp cn) cn)
+                                                ((listp cn) (format nil "~{~a~}" cn))))
+                                          when (or (alpha-char-p char)
+                                                   (digit-char-p char)
+                                                   (char= char #\-)
+                                                   (char= char #\.)
+                                                   (char= char #\_))
+                                            collect char)
+                                    'string)
+                            ;; (cl-ppcre:regex-replace-all
+                            ;;  "[^a-zA-Z0-9-_.]"
+                            ;;  (let ((cn (sb-c::component-name component)))
+                            ;;    (cond
+                            ;;      ((symbolp cn) (symbol-name cn))
+                            ;;      ((stringp cn) cn)
+                            ;;      ((listp cn) (format nil "~{~a~}" cn))))
+                            ;;  "")
+                            )
                     :type "dot")))
       (save-graph (render-graph (make-and-dfs component 9999999)) out-pn)
       (when sb-c::*compile-progress*
