@@ -68,16 +68,7 @@
                                                    (char= char #\.)
                                                    (char= char #\_))
                                             collect char)
-                                    'string)
-                            ;; (cl-ppcre:regex-replace-all
-                            ;;  "[^a-zA-Z0-9-_.]"
-                            ;;  (let ((cn (sb-c::component-name component)))
-                            ;;    (cond
-                            ;;      ((symbolp cn) (symbol-name cn))
-                            ;;      ((stringp cn) cn)
-                            ;;      ((listp cn) (format nil "~{~a~}" cn))))
-                            ;;  "")
-                            )
+                                    'string))
                     :type "dot")))
       (save-graph (render-graph (make-and-dfs component 9999999)) out-pn)
       (when sb-c::*compile-progress*
