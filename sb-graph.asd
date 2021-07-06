@@ -1,16 +1,16 @@
 ;;; -*-  Lisp -*-
-#-(or sb-testing-contrib sb-building-contrib)
-(error "Can't build contribs with ASDF")
+;; #-(or sb-testing-contrib sb-building-contrib)
+;; (error "Can't build contribs with ASDF")
 
 (asdf:defsystem "sb-graph"
+  :serial t
   :components
   ((:module src
             :serial t
             :components
             ((:file "package")
              (:file "graphing")
-             (:file "hooking")
-             )))
+             (:file "hooking"))))
   :perform (load-op :after (o c) (provide 'sb-graph))
   :in-order-to ((test-op (test-op "sb-graph/tests"))))
 

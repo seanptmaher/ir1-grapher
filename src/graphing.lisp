@@ -15,7 +15,7 @@
 
 (defun save-graph (str filename)
   (with-open-file (s filename :direction :output :if-does-not-exist :create :if-exists :supersede)
-    (write-string str s))) 
+    (write-string str s)))
 
 ;; dfs-table: obj -> T
 ;; obj-table: obj -> codename
@@ -63,7 +63,7 @@
     (setf curr-graph graph)
     (setf curr-file filename))
 
-  (defun output () 
+  (defun output ()
     (if curr-file
         (save-graph (render-graph curr-graph) curr-file)
         (render-graph curr-graph)))
@@ -102,7 +102,7 @@
 
 ;; This was copied from the common lisp cookbook.
 (defun replace-all (string part replacement &key (test #'char=))
-  "Returns a new string in which all the occurences of the part 
+  "Returns a new string in which all the occurences of the part
 is replaced with replacement."
   (with-output-to-string (out)
     (loop with part-length = (length part)

@@ -1,14 +1,30 @@
 (in-package :sb-graph-test)
 
+(require 'uiop)
+
 (deftest compile-complicated-program-with-trace
-    ;; If it didn't hit an AVER, I'd call that a success. The amount
-    ;; of organic weird compiler things going on in that file is
-    ;; incredible. In the graph is many thousands of nodes of all
-    ;; types. If I don't AVER in there, I'm using the API correctly.
-    ;;
-    ;; In case you're curious, this is CL-PPCRE, but concatenated into
-    ;; one file.
+    ;; This is a semi-complicated program, it has a substantial amount
+    ;; of stuff to graph. If I don't crash during compilation in
+    ;; there, I'm using the API semi-correctly. I don't really see a
+    ;; better way to test this, I think it's pretty good.
     (ignore-errors
-     (compile-file #p"SYS:CONTRIB;SB-GRAPH;TESTS;PROG" :trace-file t)
-     T)
-  T)
+     (progn
+         (ensure-directories-exist #p"SYS:CONTRIB;SB-GRAPH;TESTS;TRACEDIR;")
+         (compile-file #P"SYS:CONTRIB;SB-GRAPH;SRC;PACKAGE.LISP"
+                       :print nil
+                       :progress nil
+                       :output-file #p"SYS:CONTRIB;SB-GRAPH;TESTS;TRACEDIR;package.fasl"
+                       :trace-file #p"SYS:CONTRIB;SB-GRAPH;TESTS;TRACEDIR;tracefile1")
+         (compile-file #P"SYS:CONTRIB;SB-GRAPH;SRC;GRAPHING.LISP"
+                       :print nil
+                       :progress nil
+                       :output-file #p"SYS:CONTRIB;SB-GRAPH;TESTS;TRACEDIR;graphing.fasl"
+                       :trace-file #p"SYS:CONTRIB;SB-GRAPH;TESTS;TRACEDIR;tracefile2")
+         (compile-file #P"SYS:CONTRIB;SB-GRAPH;SRC;HOOKING.LISP"
+                       :print nil
+                       :progress nil
+                       :output-file #p"SYS:CONTRIB;SB-GRAPH;TESTS;TRACEDIR;hooking.fasl"
+                       :trace-file #p"SYS:CONTRIB;SB-GRAPH;TESTS;TRACEDIR;tracefile3")
+         (uiop:delete-directory-tree (translate-logical-pathname #p"SYS:CONTRIB;SB-GRAPH;TESTS;TRACEDIR;") :validate t)
+       t))
+  t)

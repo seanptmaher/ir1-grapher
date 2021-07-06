@@ -10,7 +10,7 @@
     `(progn
        (when (gethash ',fun *hook-originals*)
          (unhook ,fun))
-       (let ((,orig #',fun))
+       (let ((,orig (fdefinition ',fun)))
          (setf (gethash ',fun *hook-originals*)
                ,orig
                (gethash ',fun *hook-enabled*)
@@ -29,7 +29,7 @@
   `(setf (fdefinition ',fun) (gethash ',fun *hook-originals*)))
 (defmacro hook-enabled (fun)
   `(gethash ',fun *hook-enabled*))
-  
+
 ;; (defun test-hook (a b c &rest d)
 ;;   (list (+ a b c) d))
 ;; (hook test-hook (a b c &rest d)
@@ -52,6 +52,7 @@
   (when (streamp sb-c::*compiler-trace-output*)
     (let* ((pn (pathname sb-c::*compiler-trace-output*))
            (out-pn (make-pathname
+                    :host (pathname-host pn)
                     :directory (pathname-directory pn)
                     :name
                     (format nil "trace-~A-~A" (incf *trace-number*)
@@ -61,11 +62,11 @@
                                               (cond
                                                 ((symbolp cn) (symbol-name cn))
                                                 ((stringp cn) cn)
-                                                ((listp cn) (format nil "~{~a~}" cn))))
+                                                ((listp cn) (format nil "~{~a~}" cn))
+                                                (t "")))
                                           when (or (alpha-char-p char)
                                                    (digit-char-p char)
                                                    (char= char #\-)
-                                                   (char= char #\.)
                                                    (char= char #\_))
                                             collect char)
                                     'string))
