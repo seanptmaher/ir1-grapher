@@ -1,4 +1,4 @@
-(in-package :ir1-grapher)
+(in-package :sb-graph)
 
 (defun make-graph ()
   (make-instance 'graph

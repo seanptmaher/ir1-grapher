@@ -1,7 +1,7 @@
 (eval-when (:compile-toplevel :load-toplevel)
   (sb-ext:unlock-package :sb-c))
 
-(defpackage :ir1-grapher
+(defpackage :sb-graph
   (:shadow :stream)
   (:use :cl :cl-user)
   (:export :hook :disable-hook :enable-hook :unhook :hook-enabled

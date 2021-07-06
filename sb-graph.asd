@@ -8,8 +8,9 @@
             :serial t
             :components
             ((:file "package")
+             (:file "graphing")
              (:file "hooking")
-             (:file "graphing"))))
+             )))
   :perform (load-op :after (o c) (provide 'sb-graph))
   :in-order-to ((test-op (test-op "sb-graph/tests"))))
 

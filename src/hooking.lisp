@@ -1,4 +1,4 @@
-(in-package :ir1-grapher)
+(in-package :sb-graph)
 
 (eval-when (:compile-toplevel :load-toplevel)
   (defvar *hook-originals* (make-hash-table))
