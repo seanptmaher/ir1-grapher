@@ -1,32 +1,39 @@
 (in-package :sb-graph)
 
 (eval-when (:compile-toplevel :load-toplevel)
-  (defvar *hook-originals* (make-hash-table))
   (defvar *hook-enabled* (make-hash-table)))
 
 (defmacro hook (fun lambda-list &body body)
-  (let ((orig (gensym))
-        (ll (gensym)))
-    `(progn
-       (when (gethash ',fun *hook-originals*)
+  (let ((ll (gensym))
+        (f (gensym))
+        (orig (gensym)))
+    `(let ((,f ',fun))
+       (when (nth-value 1 (gethash ',f *hook-enabled*))
          (unhook ,fun))
-       (let ((,orig (fdefinition ',fun)))
-         (setf (gethash ',fun *hook-originals*)
-               ,orig
-               (gethash ',fun *hook-enabled*)
-               t)
-         (defun ,fun (&rest ,ll)
-           (when (hook-enabled ,fun)
-             (destructuring-bind ,lambda-list ,ll
-               (block hook
-                 ,@body)))
-           (apply ,orig ,ll))))))
+       (setf (gethash ,f *hook-enabled*) t)
+       (sb-int::encapsulate ,f 'hook
+                            (lambda (,orig &rest ,ll)
+                              (when (hook-enabled ,fun)
+                                (destructuring-bind ,lambda-list ,ll
+                                  (block hook
+                                    ,@body)))
+                              (apply ,orig ,ll))))))
 (defmacro disable-hook (fun)
-  `(setf (gethash ',fun *hook-enabled*) nil))
+  (let ((f (gensym)))
+    `(let ((,f ',fun))
+       (when (nth-value 1 (gethash ,f *hook-enabled*))
+         (setf (gethash ',fun *hook-enabled*) nil)))))
 (defmacro enable-hook (fun)
-  `(setf (gethash ',fun *hook-enabled*) t))
+  (let ((f (gensym)))
+    `(let ((,f ',fun))
+       (when (nth-value 1 (gethash ,f *hook-enabled*))
+         (setf (gethash ',fun *hook-enabled*) t)))))
 (defmacro unhook (fun)
-  `(setf (fdefinition ',fun) (gethash ',fun *hook-originals*)))
+  (let ((f (gensym)))
+    `(let ((,f ',fun))
+       (when (nth-value 1 (gethash ,f *hook-enabled*))
+         (sb-int::unencapsulate ,f 'hook)
+         (remhash ,f *hook-enabled*)))))
 (defmacro hook-enabled (fun)
   `(gethash ',fun *hook-enabled*))
 
