@@ -1,214 +1,187 @@
 digraph {
-subgraph component_4 {
-"COMPONENT [NIL]: ''DEFUN BAR''" -> "CBLOCK [3543250331250029355]"[label="head"];
-"CBLOCK [3543250331250029355]" -> "COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
-subgraph component_4 {
-}
-"CBLOCK [3543250331250029355]" -> "CBLOCK [3040842013388754210]"[label="succ[# 0]"];
-"CBLOCK [3543250331250029355]" -> "CBLOCK [2431230868627331370]"[label="succ[# 1]"];
-"CBLOCK [3040842013388754210]" -> "COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
-subgraph component_4 {
-}
-"CBLOCK [3040842013388754210]" -> "CBLOCK [2599159029235747345]"[label="succ[# 0]"];
-"CBLOCK [2599159029235747345]" -> "COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
-subgraph component_4 {
-}
-"CBLOCK [2599159029235747345]" -> "CBLOCK [2090050400843143685]"[label="succ[# 0]"];
-"CBLOCK [2599159029235747345]" -> "CBLOCK [2373100699896729886]"[label="succ[# 1]"];
-"CBLOCK [2090050400843143685]" -> "COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
-subgraph component_4 {
-}
-"CBLOCK [2090050400843143685]" -> "CBLOCK [2078005060648962145]"[label="succ[# 0]"];
-"CBLOCK [2078005060648962145]" -> "COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
-subgraph component_4 {
-}
-"CBLOCK [2078005060648962145]" -> "NOT SUPPORTED YET:
- NIL"[label="succ"];
-"CBLOCK [2078005060648962145]" -> "CBLOCK [2090050400843143685]"[label="pred[# 0]"];
-"CBLOCK [2078005060648962145]" -> "CBLOCK [1210384032215693493]"[label="pred[# 1]"];
-"CBLOCK [1210384032215693493]" -> "COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
-subgraph component_4 {
-}
-"CBLOCK [1210384032215693493]" -> "CBLOCK [2078005060648962145]"[label="succ[# 0]"];
-"CBLOCK [1210384032215693493]" -> "CBLOCK [2373100699896729886]"[label="pred[# 0]"];
-"CBLOCK [2373100699896729886]" -> "COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
-subgraph component_4 {
-}
-"CBLOCK [2373100699896729886]" -> "CBLOCK [1210384032215693493]"[label="succ[# 0]"];
-"CBLOCK [2373100699896729886]" -> "CBLOCK [2599159029235747345]"[label="pred[# 0]"];
-"CBLOCK [2373100699896729886]" -> "REF [1695540316824640713]:
+"{0} COMPONENT [NIL]: ''DEFUN BAR''" -> "{1} CBLOCK [1575903357056582106]"[label="head"];
+"{0} COMPONENT [NIL]: ''DEFUN BAR''" -> "{2} CBLOCK [646725814620792949]"[label="tail"];
+"{1} CBLOCK [1575903357056582106]" -> "{0} COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
+"{1} CBLOCK [1575903357056582106]" -> "{3} CBLOCK [463338187003706333]"[label="succ[# 0]"];
+"{1} CBLOCK [1575903357056582106]" -> "{4} CBLOCK [4485638051092447707]"[label="succ[# 1]"];
+"{3} CBLOCK [463338187003706333]" -> "{0} COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
+"{3} CBLOCK [463338187003706333]" -> "{5} CBLOCK [4517821492800445034]"[label="succ[# 0]"];
+"{3} CBLOCK [463338187003706333]" -> "{4} CBLOCK [4485638051092447707]"[label="pred[# 0]"];
+"{3} CBLOCK [463338187003706333]" -> "{1} CBLOCK [1575903357056582106]"[label="pred[# 1]"];
+"{3} CBLOCK [463338187003706333]" -> "{6} BIND [2888465489035891844]"[label="start[ctran: BLOCK-START]"color="blue"];
+"{5} CBLOCK [4517821492800445034]" -> "{0} COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
+"{5} CBLOCK [4517821492800445034]" -> "{7} CBLOCK [560949006574360106]"[label="succ[# 0]"];
+"{5} CBLOCK [4517821492800445034]" -> "{8} CBLOCK [4400914120625574157]"[label="succ[# 1]"];
+"{5} CBLOCK [4517821492800445034]" -> "{3} CBLOCK [463338187003706333]"[label="pred[# 0]"];
+"{5} CBLOCK [4517821492800445034]" -> "{9} ENTRY [3859794357893252955]:
+"[label="start[ctran: BLOCK-START]"color="blue"];
+"{7} CBLOCK [560949006574360106]" -> "{0} COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
+"{7} CBLOCK [560949006574360106]" -> "{2} CBLOCK [646725814620792949]"[label="succ[# 0]"];
+"{7} CBLOCK [560949006574360106]" -> "{5} CBLOCK [4517821492800445034]"[label="pred[# 0]"];
+"{7} CBLOCK [560949006574360106]" -> "{A} REF [970847179709888776]:
+derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>"[label="start[ctran: BLOCK-START]"color="blue"];
+"{2} CBLOCK [646725814620792949]" -> "{0} COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
+"{2} CBLOCK [646725814620792949]" -> "{7} CBLOCK [560949006574360106]"[label="pred[# 0]"];
+"{2} CBLOCK [646725814620792949]" -> "{B} CBLOCK [3753698776976668030]"[label="pred[# 1]"];
+"{B} CBLOCK [3753698776976668030]" -> "{0} COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
+"{B} CBLOCK [3753698776976668030]" -> "{2} CBLOCK [646725814620792949]"[label="succ[# 0]"];
+"{B} CBLOCK [3753698776976668030]" -> "{8} CBLOCK [4400914120625574157]"[label="pred[# 0]"];
+"{B} CBLOCK [3753698776976668030]" -> "{C} CRETURN [1875721060202815921]:
+result-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>"[label="start[ctran: BLOCK-START]"color="blue"];
+"{8} CBLOCK [4400914120625574157]" -> "{0} COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
+"{8} CBLOCK [4400914120625574157]" -> "{B} CBLOCK [3753698776976668030]"[label="succ[# 0]"];
+"{8} CBLOCK [4400914120625574157]" -> "{5} CBLOCK [4517821492800445034]"[label="pred[# 0]"];
+"{8} CBLOCK [4400914120625574157]" -> "{D} REF [1142794053290553148]:
 derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>"[label="start[ctran: BLOCK-START]"color="blue"];
-"REF [1695540316824640713]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "CLAMBDA [2078388003894975418]:
+"{D} REF [1142794053290553148]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "{E} CLAMBDA [1583379011298201103]:
 %debug-name: (LET ((G5 G4)))
 source-name: .ANONYMOUS.
 kind: LET"[label="leaf"];
-"CLAMBDA [2078388003894975418]:
+"{D} REF [1142794053290553148]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "{F} REF [1091524514451138732]:
+derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
+"{D} REF [1142794053290553148]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "{10} LVAR [1899977882035455531]:
+%derived-type: NIL
+dynamic-extent: NIL"[label="lvar"];
+"{E} CLAMBDA [1583379011298201103]:
 %debug-name: (LET ((G5 G4)))
 source-name: .ANONYMOUS.
-kind: LET" -> "CLAMBDA [3268245339652752361]:
+kind: LET" -> "{11} CLAMBDA [274430610392932488]:
 %debug-name: NIL
 source-name: BAR
 kind: NIL"[label="home"];
-"CLAMBDA [3268245339652752361]:
-%debug-name: NIL
-source-name: BAR
-kind: NIL" -> "CLAMBDA [3268245339652752361]:
-%debug-name: NIL
-source-name: BAR
-kind: NIL"[label="home"];
-"CLAMBDA [3268245339652752361]:
-%debug-name: NIL
-source-name: BAR
-kind: NIL" -> "LAMBDA-VAR [1341238998015860186]:
+"{E} CLAMBDA [1583379011298201103]:
+%debug-name: (LET ((G5 G4)))
+source-name: .ANONYMOUS.
+kind: LET" -> "{12} LAMBDA-VAR [2194186068469748088]:
 arg-info: NIL
 flags: 0"[label="vars[# 0]"];
-"CLAMBDA [3268245339652752361]:
+"{11} CLAMBDA [274430610392932488]:
 %debug-name: NIL
 source-name: BAR
-kind: NIL" -> "LAMBDA-VAR [287670567288020238]:
+kind: NIL" -> "{11} CLAMBDA [274430610392932488]:
+%debug-name: NIL
+source-name: BAR
+kind: NIL"[label="home"];
+"{11} CLAMBDA [274430610392932488]:
+%debug-name: NIL
+source-name: BAR
+kind: NIL" -> "{13} LAMBDA-VAR [551267047686253943]:
+arg-info: NIL
+flags: 0"[label="vars[# 0]"];
+"{11} CLAMBDA [274430610392932488]:
+%debug-name: NIL
+source-name: BAR
+kind: NIL" -> "{14} LAMBDA-VAR [1342701350530444948]:
 arg-info: NIL
 flags: 0"[label="vars[# 1]"];
-"CLAMBDA [3268245339652752361]:
+"{11} CLAMBDA [274430610392932488]:
 %debug-name: NIL
 source-name: BAR
-kind: NIL" -> "LAMBDA-VAR [1232380652665578990]:
+kind: NIL" -> "{15} LAMBDA-VAR [687676610963465975]:
 arg-info: NIL
 flags: 0"[label="vars[# 2]"];
-"LAMBDA-VAR [1341238998015860186]:
+"{13} LAMBDA-VAR [551267047686253943]:
 arg-info: NIL
-flags: 0" -> "CLAMBDA [3268245339652752361]:
+flags: 0" -> "{11} CLAMBDA [274430610392932488]:
 %debug-name: NIL
 source-name: BAR
 kind: NIL"[label="home"];
-"LAMBDA-VAR [1341238998015860186]:
+"{14} LAMBDA-VAR [1342701350530444948]:
 arg-info: NIL
-flags: 0" -> "NOT SUPPORTED YET:
- NIL"[label="sets"];
-"LAMBDA-VAR [287670567288020238]:
-arg-info: NIL
-flags: 0" -> "CLAMBDA [3268245339652752361]:
+flags: 0" -> "{11} CLAMBDA [274430610392932488]:
 %debug-name: NIL
 source-name: BAR
 kind: NIL"[label="home"];
-"LAMBDA-VAR [287670567288020238]:
+"{15} LAMBDA-VAR [687676610963465975]:
 arg-info: NIL
-flags: 0" -> "NOT SUPPORTED YET:
- NIL"[label="sets"];
-"LAMBDA-VAR [1232380652665578990]:
-arg-info: NIL
-flags: 0" -> "CLAMBDA [3268245339652752361]:
+flags: 0" -> "{11} CLAMBDA [274430610392932488]:
 %debug-name: NIL
 source-name: BAR
 kind: NIL"[label="home"];
-"LAMBDA-VAR [1232380652665578990]:
+"{12} LAMBDA-VAR [2194186068469748088]:
 arg-info: NIL
-flags: 0" -> "NOT SUPPORTED YET:
- NIL"[label="sets"];
-"CLAMBDA [2078388003894975418]:
-%debug-name: (LET ((G5 G4)))
-source-name: .ANONYMOUS.
-kind: LET" -> "LAMBDA-VAR [1618058621633041977]:
-arg-info: NIL
-flags: 0"[label="vars[# 0]"];
-"LAMBDA-VAR [1618058621633041977]:
-arg-info: NIL
-flags: 0" -> "CLAMBDA [2078388003894975418]:
+flags: 0" -> "{E} CLAMBDA [1583379011298201103]:
 %debug-name: (LET ((G5 G4)))
 source-name: .ANONYMOUS.
 kind: LET"[label="home"];
-"LAMBDA-VAR [1618058621633041977]:
-arg-info: NIL
-flags: 0" -> "NOT SUPPORTED YET:
- NIL"[label="sets"];
-"REF [1695540316824640713]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "REF [3568984120657284077]:
-derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"REF [3568984120657284077]:
-derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>" -> "LAMBDA-VAR [3857802337910524067]:
+"{F} REF [1091524514451138732]:
+derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>" -> "{16} LAMBDA-VAR [4210063433964233181]:
 arg-info: NIL
 flags: 0"[label="leaf"];
-"LAMBDA-VAR [3857802337910524067]:
+"{F} REF [1091524514451138732]:
+derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>" -> "{17} COMBINATION [2114537499351968799]:
+kind: LOCAL
+info: LOCAL"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
+"{F} REF [1091524514451138732]:
+derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>" -> "{18} LVAR [1279162088182557763]:
+%derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"{16} LAMBDA-VAR [4210063433964233181]:
 arg-info: NIL
-flags: 0" -> "CLAMBDA [3027615966226058684]:
+flags: 0" -> "{19} CLAMBDA [1745095324529044804]:
 %debug-name: (LET ((G4 CONSTANT)))
 source-name: .ANONYMOUS.
 kind: LET"[label="home"];
-"CLAMBDA [3027615966226058684]:
+"{19} CLAMBDA [1745095324529044804]:
 %debug-name: (LET ((G4 CONSTANT)))
 source-name: .ANONYMOUS.
-kind: LET" -> "CLAMBDA [3268245339652752361]:
+kind: LET" -> "{11} CLAMBDA [274430610392932488]:
 %debug-name: NIL
 source-name: BAR
 kind: NIL"[label="home"];
-"CLAMBDA [3027615966226058684]:
+"{19} CLAMBDA [1745095324529044804]:
 %debug-name: (LET ((G4 CONSTANT)))
 source-name: .ANONYMOUS.
-kind: LET" -> "LAMBDA-VAR [3857802337910524067]:
+kind: LET" -> "{16} LAMBDA-VAR [4210063433964233181]:
 arg-info: NIL
 flags: 0"[label="vars[# 0]"];
-"LAMBDA-VAR [3857802337910524067]:
-arg-info: NIL
-flags: 0" -> "NOT SUPPORTED YET:
- NIL"[label="sets"];
-"REF [3568984120657284077]:
-derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>" -> "COMBINATION [3417026558883955227]:
+"{17} COMBINATION [2114537499351968799]:
 kind: LOCAL
-info: LOCAL"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"COMBINATION [3417026558883955227]:
-kind: LOCAL
-info: LOCAL" -> "LVAR [3931735087807662537]:
+info: LOCAL" -> "{10} LVAR [1899977882035455531]:
 %derived-type: NIL
 dynamic-extent: NIL"[label="fun"];
-"LVAR [3931735087807662537]:
-%derived-type: NIL
-dynamic-extent: NIL" -> "COMBINATION [3417026558883955227]:
+"{17} COMBINATION [2114537499351968799]:
 kind: LOCAL
-info: LOCAL"[label="dest"color="brown"];
-"LVAR [3931735087807662537]:
-%derived-type: NIL
-dynamic-extent: NIL" -> "REF [1695540316824640713]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>"[label="uses"];
-"COMBINATION [3417026558883955227]:
-kind: LOCAL
-info: LOCAL" -> "LVAR [269266817295081405]:
+info: LOCAL" -> "{18} LVAR [1279162088182557763]:
 %derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>
 dynamic-extent: NIL"[label="args[# 0]"];
-"LVAR [269266817295081405]:
-%derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>
-dynamic-extent: NIL" -> "COMBINATION [3417026558883955227]:
+"{10} LVAR [1899977882035455531]:
+%derived-type: NIL
+dynamic-extent: NIL" -> "{17} COMBINATION [2114537499351968799]:
 kind: LOCAL
 info: LOCAL"[label="dest"color="brown"];
-"LVAR [269266817295081405]:
-%derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>
-dynamic-extent: NIL" -> "REF [3568984120657284077]:
-derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>"[label="uses"];
-"REF [3568984120657284077]:
-derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>" -> "LVAR [269266817295081405]:
-%derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>
-dynamic-extent: NIL"[label="lvar"];
-"REF [1695540316824640713]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "LVAR [3931735087807662537]:
+"{10} LVAR [1899977882035455531]:
 %derived-type: NIL
-dynamic-extent: NIL"[label="lvar"];
-"CBLOCK [1210384032215693493]" -> "CRETURN [3180425186800796160]:
-result-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>"[label="start[ctran: BLOCK-START]"color="blue"];
-"CRETURN [3180425186800796160]:
-result-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>" -> "CLAMBDA [3268245339652752361]:
+dynamic-extent: NIL" -> "{D} REF [1142794053290553148]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>"[label="uses"];
+"{18} LVAR [1279162088182557763]:
+%derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>
+dynamic-extent: NIL" -> "{17} COMBINATION [2114537499351968799]:
+kind: LOCAL
+info: LOCAL"[label="dest"color="brown"];
+"{18} LVAR [1279162088182557763]:
+%derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>
+dynamic-extent: NIL" -> "{F} REF [1091524514451138732]:
+derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>"[label="uses"];
+"{C} CRETURN [1875721060202815921]:
+result-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>" -> "{11} CLAMBDA [274430610392932488]:
 %debug-name: NIL
 source-name: BAR
 kind: NIL"[label="lambda"];
-"CRETURN [3180425186800796160]:
-result-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>" -> "LVAR [3653806243815781745]:
+"{C} CRETURN [1875721060202815921]:
+result-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>" -> "{1A} LVAR [934340460890599439]:
 %derived-type: NIL
 dynamic-extent: NIL"[label="result"];
-"LVAR [3653806243815781745]:
+"{1A} LVAR [934340460890599439]:
 %derived-type: NIL
-dynamic-extent: NIL" -> "CRETURN [3180425186800796160]:
+dynamic-extent: NIL" -> "{C} CRETURN [1875721060202815921]:
 result-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>"[label="dest"color="brown"];
-"LVAR [3653806243815781745]:
+"{1A} LVAR [934340460890599439]:
 %derived-type: NIL
-dynamic-extent: NIL" -> "COMBINATION [301805749562763756]:
+dynamic-extent: NIL" -> "{1B} COMBINATION [875787350148863859]:
 kind: KNOWN
 info: #<VOP-INFO
         :NAME SB-VM::GENERIC-*
@@ -216,25 +189,45 @@ info: #<VOP-INFO
         :RESULT-TYPES (*)
         :LTN-POLICY :SAFE
         :COST 30>"[label="uses"];
-"COMBINATION [301805749562763756]:
+"{1B} COMBINATION [875787350148863859]:
 kind: KNOWN
 info: #<VOP-INFO
         :NAME SB-VM::GENERIC-*
         :ARG-TYPES (* *)
         :RESULT-TYPES (*)
         :LTN-POLICY :SAFE
-        :COST 30>" -> "LVAR [2236161640608270278]:
+        :COST 30>" -> "{1C} LVAR [880575187628074238]:
 %derived-type: #<VALUES-TYPE (VALUES
                               (FUNCTION (&REST NUMBER)
                                (VALUES NUMBER &OPTIONAL))
                               &OPTIONAL)>
 dynamic-extent: NIL"[label="fun"];
-"LVAR [2236161640608270278]:
+"{1B} COMBINATION [875787350148863859]:
+kind: KNOWN
+info: #<VOP-INFO
+        :NAME SB-VM::GENERIC-*
+        :ARG-TYPES (* *)
+        :RESULT-TYPES (*)
+        :LTN-POLICY :SAFE
+        :COST 30>" -> "{1D} LVAR [2954358970637004122]:
+%derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>
+dynamic-extent: NIL"[label="args[# 0]"];
+"{1B} COMBINATION [875787350148863859]:
+kind: KNOWN
+info: #<VOP-INFO
+        :NAME SB-VM::GENERIC-*
+        :ARG-TYPES (* *)
+        :RESULT-TYPES (*)
+        :LTN-POLICY :SAFE
+        :COST 30>" -> "{1E} LVAR [1183996723568101089]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="args[# 1]"];
+"{1C} LVAR [880575187628074238]:
 %derived-type: #<VALUES-TYPE (VALUES
                               (FUNCTION (&REST NUMBER)
                                (VALUES NUMBER &OPTIONAL))
                               &OPTIONAL)>
-dynamic-extent: NIL" -> "COMBINATION [301805749562763756]:
+dynamic-extent: NIL" -> "{1B} COMBINATION [875787350148863859]:
 kind: KNOWN
 info: #<VOP-INFO
         :NAME SB-VM::GENERIC-*
@@ -242,21 +235,21 @@ info: #<VOP-INFO
         :RESULT-TYPES (*)
         :LTN-POLICY :SAFE
         :COST 30>"[label="dest"color="brown"];
-"LVAR [2236161640608270278]:
+"{1C} LVAR [880575187628074238]:
 %derived-type: #<VALUES-TYPE (VALUES
                               (FUNCTION (&REST NUMBER)
                                (VALUES NUMBER &OPTIONAL))
                               &OPTIONAL)>
-dynamic-extent: NIL" -> "REF [1853464486177759058]:
+dynamic-extent: NIL" -> "{1F} REF [1077682984383576289]:
 derived-type: #<VALUES-TYPE (VALUES
                              (FUNCTION (&REST NUMBER)
                               (VALUES NUMBER &OPTIONAL))
                              &OPTIONAL)>"[label="uses"];
-"REF [1853464486177759058]:
+"{1F} REF [1077682984383576289]:
 derived-type: #<VALUES-TYPE (VALUES
                              (FUNCTION (&REST NUMBER)
                               (VALUES NUMBER &OPTIONAL))
-                             &OPTIONAL)>" -> "NOT SUPPORTED YET:
+                             &OPTIONAL)>" -> "{20} NOT SUPPORTED YET:
  #<GLOBAL-VAR
    :%SOURCE-NAME *
    :TYPE #<SB-KERNEL:FUN-TYPE (FUNCTION (&REST NUMBER)
@@ -264,127 +257,107 @@ derived-type: #<VALUES-TYPE (VALUES
    :DEFINED-TYPE #<SB-KERNEL:FUN-TYPE (FUNCTION (&REST NUMBER)
                                        (VALUES NUMBER &OPTIONAL))>
    :WHERE-FROM :DECLARED
-   :KIND :GLOBAL-FUNCTION {100230CB43}>"[label="leaf"];
-"REF [1853464486177759058]:
+   :KIND :GLOBAL-FUNCTION {1002A2E013}>"[label="leaf"];
+"{1F} REF [1077682984383576289]:
 derived-type: #<VALUES-TYPE (VALUES
                              (FUNCTION (&REST NUMBER)
                               (VALUES NUMBER &OPTIONAL))
-                             &OPTIONAL)>" -> "REF [1681920325497043945]:
+                             &OPTIONAL)>" -> "{21} REF [3270722447377338959]:
 derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"REF [1681920325497043945]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "NOT SUPPORTED YET:
+"{1F} REF [1077682984383576289]:
+derived-type: #<VALUES-TYPE (VALUES
+                             (FUNCTION (&REST NUMBER)
+                              (VALUES NUMBER &OPTIONAL))
+                             &OPTIONAL)>" -> "{1C} LVAR [880575187628074238]:
+%derived-type: #<VALUES-TYPE (VALUES
+                              (FUNCTION (&REST NUMBER)
+                               (VALUES NUMBER &OPTIONAL))
+                              &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"{21} REF [3270722447377338959]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "{22} NOT SUPPORTED YET:
  #<GLOBAL-VAR
    :%SOURCE-NAME FOO
    :TYPE #<SB-KERNEL:BUILT-IN-CLASSOID FUNCTION (read-only)>
    :DEFINED-TYPE #<SB-KERNEL:FUN-TYPE (FUNCTION (T T)
                                        (VALUES NUMBER &OPTIONAL))>
    :WHERE-FROM :DEFINED-HERE
-   :KIND :GLOBAL-FUNCTION {100230CFC3}>"[label="leaf"];
-"REF [1681920325497043945]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "REF [753884420972773037]:
+   :KIND :GLOBAL-FUNCTION {1002A2E323}>"[label="leaf"];
+"{21} REF [3270722447377338959]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "{23} REF [3193645899558233143]:
 derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"REF [753884420972773037]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LAMBDA-VAR [1341238998015860186]:
+"{21} REF [3270722447377338959]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "{24} LVAR [1092023012539887227]:
+%derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"{23} REF [3193645899558233143]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{13} LAMBDA-VAR [551267047686253943]:
 arg-info: NIL
 flags: 0"[label="leaf"];
-"REF [753884420972773037]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "REF [3015789995067183729]:
+"{23} REF [3193645899558233143]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{25} REF [2658638157906711011]:
 derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"REF [3015789995067183729]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LAMBDA-VAR [287670567288020238]:
+"{23} REF [3193645899558233143]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{26} LVAR [1584308892107556128]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"{25} REF [2658638157906711011]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{14} LAMBDA-VAR [1342701350530444948]:
 arg-info: NIL
 flags: 0"[label="leaf"];
-"REF [3015789995067183729]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "COMBINATION [4397148349875675781]:
+"{25} REF [2658638157906711011]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{27} COMBINATION [4361784411754163848]:
 kind: FULL
 info: FULL"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"COMBINATION [4397148349875675781]:
+"{25} REF [2658638157906711011]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{28} LVAR [2490411435938110265]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"{27} COMBINATION [4361784411754163848]:
 kind: FULL
-info: FULL" -> "LVAR [986616582353344311]:
+info: FULL" -> "{24} LVAR [1092023012539887227]:
 %derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>
 dynamic-extent: NIL"[label="fun"];
-"LVAR [986616582353344311]:
+"{27} COMBINATION [4361784411754163848]:
+kind: FULL
+info: FULL" -> "{26} LVAR [1584308892107556128]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="args[# 0]"];
+"{27} COMBINATION [4361784411754163848]:
+kind: FULL
+info: FULL" -> "{28} LVAR [2490411435938110265]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="args[# 1]"];
+"{24} LVAR [1092023012539887227]:
 %derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>
-dynamic-extent: NIL" -> "COMBINATION [4397148349875675781]:
+dynamic-extent: NIL" -> "{27} COMBINATION [4361784411754163848]:
 kind: FULL
 info: FULL"[label="dest"color="brown"];
-"LVAR [986616582353344311]:
+"{24} LVAR [1092023012539887227]:
 %derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>
-dynamic-extent: NIL" -> "REF [1681920325497043945]:
+dynamic-extent: NIL" -> "{21} REF [3270722447377338959]:
 derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>"[label="uses"];
-"COMBINATION [4397148349875675781]:
-kind: FULL
-info: FULL" -> "LVAR [150907471394990303]:
+"{26} LVAR [1584308892107556128]:
 %derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL"[label="args[# 0]"];
-"COMBINATION [4397148349875675781]:
-kind: FULL
-info: FULL" -> "LVAR [4439456225624646676]:
-%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL"[label="args[# 1]"];
-"LVAR [150907471394990303]:
-%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL" -> "COMBINATION [4397148349875675781]:
+dynamic-extent: NIL" -> "{27} COMBINATION [4361784411754163848]:
 kind: FULL
 info: FULL"[label="dest"color="brown"];
-"LVAR [150907471394990303]:
+"{26} LVAR [1584308892107556128]:
 %derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL" -> "REF [753884420972773037]:
+dynamic-extent: NIL" -> "{23} REF [3193645899558233143]:
 derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="uses"];
-"LVAR [4439456225624646676]:
+"{28} LVAR [2490411435938110265]:
 %derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL" -> "COMBINATION [4397148349875675781]:
+dynamic-extent: NIL" -> "{27} COMBINATION [4361784411754163848]:
 kind: FULL
 info: FULL"[label="dest"color="brown"];
-"LVAR [4439456225624646676]:
+"{28} LVAR [2490411435938110265]:
 %derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL" -> "REF [3015789995067183729]:
+dynamic-extent: NIL" -> "{25} REF [2658638157906711011]:
 derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="uses"];
-"REF [3015789995067183729]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LVAR [4439456225624646676]:
-%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL"[label="lvar"];
-"REF [753884420972773037]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LVAR [150907471394990303]:
-%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL"[label="lvar"];
-"REF [1681920325497043945]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "LVAR [986616582353344311]:
-%derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>
-dynamic-extent: NIL"[label="lvar"];
-"REF [1853464486177759058]:
-derived-type: #<VALUES-TYPE (VALUES
-                             (FUNCTION (&REST NUMBER)
-                              (VALUES NUMBER &OPTIONAL))
-                             &OPTIONAL)>" -> "LVAR [2236161640608270278]:
-%derived-type: #<VALUES-TYPE (VALUES
-                              (FUNCTION (&REST NUMBER)
-                               (VALUES NUMBER &OPTIONAL))
-                              &OPTIONAL)>
-dynamic-extent: NIL"[label="lvar"];
-"COMBINATION [301805749562763756]:
-kind: KNOWN
-info: #<VOP-INFO
-        :NAME SB-VM::GENERIC-*
-        :ARG-TYPES (* *)
-        :RESULT-TYPES (*)
-        :LTN-POLICY :SAFE
-        :COST 30>" -> "LVAR [1850972171077085352]:
+"{1D} LVAR [2954358970637004122]:
 %derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>
-dynamic-extent: NIL"[label="args[# 0]"];
-"COMBINATION [301805749562763756]:
-kind: KNOWN
-info: #<VOP-INFO
-        :NAME SB-VM::GENERIC-*
-        :ARG-TYPES (* *)
-        :RESULT-TYPES (*)
-        :LTN-POLICY :SAFE
-        :COST 30>" -> "LVAR [2931222119245330075]:
-%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL"[label="args[# 1]"];
-"LVAR [1850972171077085352]:
-%derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>
-dynamic-extent: NIL" -> "COMBINATION [301805749562763756]:
+dynamic-extent: NIL" -> "{1B} COMBINATION [875787350148863859]:
 kind: KNOWN
 info: #<VOP-INFO
         :NAME SB-VM::GENERIC-*
@@ -392,18 +365,18 @@ info: #<VOP-INFO
         :RESULT-TYPES (*)
         :LTN-POLICY :SAFE
         :COST 30>"[label="dest"color="brown"];
-"LVAR [1850972171077085352]:
+"{1D} LVAR [2954358970637004122]:
 %derived-type: #<VALUES-TYPE (VALUES NUMBER &OPTIONAL)>
-dynamic-extent: NIL" -> "NOT SUPPORTED YET:
+dynamic-extent: NIL" -> "{29} NOT SUPPORTED YET:
  #<CAST
    :%TYPE-CHECK NIL
-   :VALUE #<SB-C::LVAR 32 {1002322EE3}>
+   :VALUE #<SB-C::LVAR 32 {1002A36853}>
    :ASSERTED-TYPE #<SB-KERNEL:VALUES-TYPE (VALUES NUMBER &OPTIONAL)>
    :TYPE-TO-CHECK #<SB-KERNEL:VALUES-TYPE (VALUES NUMBER
-                                                  &OPTIONAL)> {10023121C3}>"[label="uses"];
-"LVAR [2931222119245330075]:
+                                                  &OPTIONAL)> {1002A31703}>"[label="uses"];
+"{1E} LVAR [1183996723568101089]:
 %derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL" -> "COMBINATION [301805749562763756]:
+dynamic-extent: NIL" -> "{1B} COMBINATION [875787350148863859]:
 kind: KNOWN
 info: #<VOP-INFO
         :NAME SB-VM::GENERIC-*
@@ -411,100 +384,109 @@ info: #<VOP-INFO
         :RESULT-TYPES (*)
         :LTN-POLICY :SAFE
         :COST 30>"[label="dest"color="brown"];
-"LVAR [2931222119245330075]:
+"{1E} LVAR [1183996723568101089]:
 %derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL" -> "REF [1452036999431628125]:
+dynamic-extent: NIL" -> "{2A} REF [3033938375645121583]:
 derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="uses"];
-"REF [1452036999431628125]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LAMBDA-VAR [1232380652665578990]:
+"{2A} REF [3033938375645121583]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{15} LAMBDA-VAR [687676610963465975]:
 arg-info: NIL
 flags: 0"[label="leaf"];
-"REF [1452036999431628125]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "REF [836077791533109035]:
+"{2A} REF [3033938375645121583]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{2B} REF [1791781268393324760]:
 derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"REF [836077791533109035]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "CLAMBDA [3027615966226058684]:
+"{2A} REF [3033938375645121583]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{1E} LVAR [1183996723568101089]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"{2B} REF [1791781268393324760]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "{19} CLAMBDA [1745095324529044804]:
 %debug-name: (LET ((G4 CONSTANT)))
 source-name: .ANONYMOUS.
 kind: LET"[label="leaf"];
-"REF [836077791533109035]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "COMBINATION [4556497330428521945]:
+"{2B} REF [1791781268393324760]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "{2C} COMBINATION [1668396070861299820]:
 kind: LOCAL
 info: LOCAL"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"COMBINATION [4556497330428521945]:
+"{2B} REF [1791781268393324760]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "{2D} LVAR [3615461272610505909]:
+%derived-type: NIL
+dynamic-extent: NIL"[label="lvar"];
+"{2C} COMBINATION [1668396070861299820]:
 kind: LOCAL
-info: LOCAL" -> "LVAR [596475193987792726]:
+info: LOCAL" -> "{2D} LVAR [3615461272610505909]:
 %derived-type: NIL
 dynamic-extent: NIL"[label="fun"];
-"LVAR [596475193987792726]:
-%derived-type: NIL
-dynamic-extent: NIL" -> "COMBINATION [4556497330428521945]:
+"{2C} COMBINATION [1668396070861299820]:
 kind: LOCAL
-info: LOCAL"[label="dest"color="brown"];
-"LVAR [596475193987792726]:
-%derived-type: NIL
-dynamic-extent: NIL" -> "REF [836077791533109035]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>"[label="uses"];
-"COMBINATION [4556497330428521945]:
-kind: LOCAL
-info: LOCAL" -> "LVAR [831833430734236858]:
+info: LOCAL" -> "{2E} LVAR [1415646066275954498]:
 %derived-type: #<NAMED-TYPE *>
 dynamic-extent: NIL"[label="args[# 0]"];
-"LVAR [831833430734236858]:
-%derived-type: #<NAMED-TYPE *>
-dynamic-extent: NIL" -> "COMBINATION [4556497330428521945]:
+"{2D} LVAR [3615461272610505909]:
+%derived-type: NIL
+dynamic-extent: NIL" -> "{2C} COMBINATION [1668396070861299820]:
 kind: LOCAL
 info: LOCAL"[label="dest"color="brown"];
-"LVAR [831833430734236858]:
+"{2D} LVAR [3615461272610505909]:
+%derived-type: NIL
+dynamic-extent: NIL" -> "{2B} REF [1791781268393324760]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>"[label="uses"];
+"{2E} LVAR [1415646066275954498]:
 %derived-type: #<NAMED-TYPE *>
-dynamic-extent: NIL" -> "COMBINATION [4397148349875675781]:
+dynamic-extent: NIL" -> "{2C} COMBINATION [1668396070861299820]:
+kind: LOCAL
+info: LOCAL"[label="dest"color="brown"];
+"{2E} LVAR [1415646066275954498]:
+%derived-type: #<NAMED-TYPE *>
+dynamic-extent: NIL" -> "{27} COMBINATION [4361784411754163848]:
 kind: FULL
 info: FULL"[label="uses"];
-"REF [836077791533109035]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "LVAR [596475193987792726]:
-%derived-type: NIL
-dynamic-extent: NIL"[label="lvar"];
-"REF [1452036999431628125]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LVAR [2931222119245330075]:
-%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL"[label="lvar"];
-"CBLOCK [2078005060648962145]" -> "NOT SUPPORTED YET:
- NIL"[label="start"];
-"CBLOCK [2090050400843143685]" -> "CBLOCK [2599159029235747345]"[label="pred[# 0]"];
-"CBLOCK [2090050400843143685]" -> "REF [3760030628479005079]:
-derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>"[label="start[ctran: BLOCK-START]"color="blue"];
-"REF [3760030628479005079]:
-derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>" -> "NOT SUPPORTED YET:
+"{A} REF [970847179709888776]:
+derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>" -> "{2F} NOT SUPPORTED YET:
  #<GLOBAL-VAR
    :%SOURCE-NAME SB-C::%TYPE-CHECK-ERROR/C
    :TYPE #<SB-KERNEL:FUN-TYPE (FUNCTION (T T T) NIL)>
    :DEFINED-TYPE #<SB-KERNEL:FUN-TYPE (FUNCTION (T T T) NIL)>
    :WHERE-FROM :DECLARED
-   :KIND :GLOBAL-FUNCTION {1002324393}>"[label="leaf"];
-"REF [3760030628479005079]:
-derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>" -> "REF [1156828713622891660]:
+   :KIND :GLOBAL-FUNCTION {1002A37C83}>"[label="leaf"];
+"{A} REF [970847179709888776]:
+derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>" -> "{30} REF [2480652678179831556]:
 derived-type: #<VALUES-TYPE (VALUES (NOT NUMBER) &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"REF [1156828713622891660]:
-derived-type: #<VALUES-TYPE (VALUES (NOT NUMBER) &OPTIONAL)>" -> "LAMBDA-VAR [3857802337910524067]:
+"{A} REF [970847179709888776]:
+derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>" -> "{31} LVAR [4253175545486229054]:
+%derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"{30} REF [2480652678179831556]:
+derived-type: #<VALUES-TYPE (VALUES (NOT NUMBER) &OPTIONAL)>" -> "{16} LAMBDA-VAR [4210063433964233181]:
 arg-info: NIL
 flags: 0"[label="leaf"];
-"REF [1156828713622891660]:
-derived-type: #<VALUES-TYPE (VALUES (NOT NUMBER) &OPTIONAL)>" -> "REF [4092118572960070058]:
+"{30} REF [2480652678179831556]:
+derived-type: #<VALUES-TYPE (VALUES (NOT NUMBER) &OPTIONAL)>" -> "{32} REF [4597392725968595806]:
 derived-type: #<VALUES-TYPE (VALUES (MEMBER SB-KERNEL:OBJECT-NOT-NUMBER-ERROR)
                                     &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"REF [4092118572960070058]:
+"{30} REF [2480652678179831556]:
+derived-type: #<VALUES-TYPE (VALUES (NOT NUMBER) &OPTIONAL)>" -> "{33} LVAR [351302786686104344]:
+%derived-type: #<VALUES-TYPE (VALUES (NOT NUMBER) &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"{32} REF [4597392725968595806]:
 derived-type: #<VALUES-TYPE (VALUES (MEMBER SB-KERNEL:OBJECT-NOT-NUMBER-ERROR)
-                                    &OPTIONAL)>" -> "CONSTANT [820563993504725019]:
+                                    &OPTIONAL)>" -> "{34} CONSTANT [1034096512296901705]:
 value: OBJECT-NOT-NUMBER-ERROR"[label="leaf"];
-"REF [4092118572960070058]:
+"{32} REF [4597392725968595806]:
 derived-type: #<VALUES-TYPE (VALUES (MEMBER SB-KERNEL:OBJECT-NOT-NUMBER-ERROR)
-                                    &OPTIONAL)>" -> "REF [4132915231525632962]:
+                                    &OPTIONAL)>" -> "{35} REF [4291216069658349752]:
 derived-type: #<VALUES-TYPE (VALUES NULL &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"REF [4132915231525632962]:
-derived-type: #<VALUES-TYPE (VALUES NULL &OPTIONAL)>" -> "CONSTANT [2928293025353906395]:
+"{32} REF [4597392725968595806]:
+derived-type: #<VALUES-TYPE (VALUES (MEMBER SB-KERNEL:OBJECT-NOT-NUMBER-ERROR)
+                                    &OPTIONAL)>" -> "{36} LVAR [742349938659844719]:
+%derived-type: #<VALUES-TYPE (VALUES (MEMBER SB-KERNEL:OBJECT-NOT-NUMBER-ERROR)
+                                     &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"{35} REF [4291216069658349752]:
+derived-type: #<VALUES-TYPE (VALUES NULL &OPTIONAL)>" -> "{37} CONSTANT [3166890015804126914]:
 value: NIL"[label="leaf"];
-"REF [4132915231525632962]:
-derived-type: #<VALUES-TYPE (VALUES NULL &OPTIONAL)>" -> "COMBINATION [2934030836138775234]:
+"{35} REF [4291216069658349752]:
+derived-type: #<VALUES-TYPE (VALUES NULL &OPTIONAL)>" -> "{38} COMBINATION [3837710288170316803]:
 kind: KNOWN
 info: #<VOP-INFO
         :NAME SB-VM::TYPE-CHECK-ERROR/C
@@ -513,7 +495,11 @@ info: #<VOP-INFO
         :LTN-POLICY :FAST-SAFE
         :COST 900
         :INFO-ARG-COUNT 2>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"COMBINATION [2934030836138775234]:
+"{35} REF [4291216069658349752]:
+derived-type: #<VALUES-TYPE (VALUES NULL &OPTIONAL)>" -> "{39} LVAR [919264330689577080]:
+%derived-type: #<VALUES-TYPE (VALUES NULL &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"{38} COMBINATION [3837710288170316803]:
 kind: KNOWN
 info: #<VOP-INFO
         :NAME SB-VM::TYPE-CHECK-ERROR/C
@@ -521,12 +507,10 @@ info: #<VOP-INFO
         :RESULT-TYPES NIL
         :LTN-POLICY :FAST-SAFE
         :COST 900
-        :INFO-ARG-COUNT 2>" -> "LVAR [373142717229776962]:
+        :INFO-ARG-COUNT 2>" -> "{31} LVAR [4253175545486229054]:
 %derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>
 dynamic-extent: NIL"[label="fun"];
-"LVAR [373142717229776962]:
-%derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>
-dynamic-extent: NIL" -> "COMBINATION [2934030836138775234]:
+"{38} COMBINATION [3837710288170316803]:
 kind: KNOWN
 info: #<VOP-INFO
         :NAME SB-VM::TYPE-CHECK-ERROR/C
@@ -534,23 +518,10 @@ info: #<VOP-INFO
         :RESULT-TYPES NIL
         :LTN-POLICY :FAST-SAFE
         :COST 900
-        :INFO-ARG-COUNT 2>"[label="dest"color="brown"];
-"LVAR [373142717229776962]:
-%derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>
-dynamic-extent: NIL" -> "REF [3760030628479005079]:
-derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>"[label="uses"];
-"COMBINATION [2934030836138775234]:
-kind: KNOWN
-info: #<VOP-INFO
-        :NAME SB-VM::TYPE-CHECK-ERROR/C
-        :ARG-TYPES (* (:CONSTANT . SYMBOL) (:CONSTANT . T))
-        :RESULT-TYPES NIL
-        :LTN-POLICY :FAST-SAFE
-        :COST 900
-        :INFO-ARG-COUNT 2>" -> "LVAR [303435875896693038]:
+        :INFO-ARG-COUNT 2>" -> "{33} LVAR [351302786686104344]:
 %derived-type: #<VALUES-TYPE (VALUES (NOT NUMBER) &OPTIONAL)>
 dynamic-extent: NIL"[label="args[# 0]"];
-"COMBINATION [2934030836138775234]:
+"{38} COMBINATION [3837710288170316803]:
 kind: KNOWN
 info: #<VOP-INFO
         :NAME SB-VM::TYPE-CHECK-ERROR/C
@@ -558,11 +529,11 @@ info: #<VOP-INFO
         :RESULT-TYPES NIL
         :LTN-POLICY :FAST-SAFE
         :COST 900
-        :INFO-ARG-COUNT 2>" -> "LVAR [3852467236391074190]:
+        :INFO-ARG-COUNT 2>" -> "{36} LVAR [742349938659844719]:
 %derived-type: #<VALUES-TYPE (VALUES (MEMBER SB-KERNEL:OBJECT-NOT-NUMBER-ERROR)
                                      &OPTIONAL)>
 dynamic-extent: NIL"[label="args[# 1]"];
-"COMBINATION [2934030836138775234]:
+"{38} COMBINATION [3837710288170316803]:
 kind: KNOWN
 info: #<VOP-INFO
         :NAME SB-VM::TYPE-CHECK-ERROR/C
@@ -570,12 +541,12 @@ info: #<VOP-INFO
         :RESULT-TYPES NIL
         :LTN-POLICY :FAST-SAFE
         :COST 900
-        :INFO-ARG-COUNT 2>" -> "LVAR [3578654905043868853]:
+        :INFO-ARG-COUNT 2>" -> "{39} LVAR [919264330689577080]:
 %derived-type: #<VALUES-TYPE (VALUES NULL &OPTIONAL)>
 dynamic-extent: NIL"[label="args[# 2]"];
-"LVAR [303435875896693038]:
-%derived-type: #<VALUES-TYPE (VALUES (NOT NUMBER) &OPTIONAL)>
-dynamic-extent: NIL" -> "COMBINATION [2934030836138775234]:
+"{31} LVAR [4253175545486229054]:
+%derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>
+dynamic-extent: NIL" -> "{38} COMBINATION [3837710288170316803]:
 kind: KNOWN
 info: #<VOP-INFO
         :NAME SB-VM::TYPE-CHECK-ERROR/C
@@ -584,14 +555,29 @@ info: #<VOP-INFO
         :LTN-POLICY :FAST-SAFE
         :COST 900
         :INFO-ARG-COUNT 2>"[label="dest"color="brown"];
-"LVAR [303435875896693038]:
+"{31} LVAR [4253175545486229054]:
+%derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>
+dynamic-extent: NIL" -> "{A} REF [970847179709888776]:
+derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>"[label="uses"];
+"{33} LVAR [351302786686104344]:
 %derived-type: #<VALUES-TYPE (VALUES (NOT NUMBER) &OPTIONAL)>
-dynamic-extent: NIL" -> "REF [1156828713622891660]:
+dynamic-extent: NIL" -> "{38} COMBINATION [3837710288170316803]:
+kind: KNOWN
+info: #<VOP-INFO
+        :NAME SB-VM::TYPE-CHECK-ERROR/C
+        :ARG-TYPES (* (:CONSTANT . SYMBOL) (:CONSTANT . T))
+        :RESULT-TYPES NIL
+        :LTN-POLICY :FAST-SAFE
+        :COST 900
+        :INFO-ARG-COUNT 2>"[label="dest"color="brown"];
+"{33} LVAR [351302786686104344]:
+%derived-type: #<VALUES-TYPE (VALUES (NOT NUMBER) &OPTIONAL)>
+dynamic-extent: NIL" -> "{30} REF [2480652678179831556]:
 derived-type: #<VALUES-TYPE (VALUES (NOT NUMBER) &OPTIONAL)>"[label="uses"];
-"LVAR [3852467236391074190]:
+"{36} LVAR [742349938659844719]:
 %derived-type: #<VALUES-TYPE (VALUES (MEMBER SB-KERNEL:OBJECT-NOT-NUMBER-ERROR)
                                      &OPTIONAL)>
-dynamic-extent: NIL" -> "COMBINATION [2934030836138775234]:
+dynamic-extent: NIL" -> "{38} COMBINATION [3837710288170316803]:
 kind: KNOWN
 info: #<VOP-INFO
         :NAME SB-VM::TYPE-CHECK-ERROR/C
@@ -600,15 +586,15 @@ info: #<VOP-INFO
         :LTN-POLICY :FAST-SAFE
         :COST 900
         :INFO-ARG-COUNT 2>"[label="dest"color="brown"];
-"LVAR [3852467236391074190]:
+"{36} LVAR [742349938659844719]:
 %derived-type: #<VALUES-TYPE (VALUES (MEMBER SB-KERNEL:OBJECT-NOT-NUMBER-ERROR)
                                      &OPTIONAL)>
-dynamic-extent: NIL" -> "REF [4092118572960070058]:
+dynamic-extent: NIL" -> "{32} REF [4597392725968595806]:
 derived-type: #<VALUES-TYPE (VALUES (MEMBER SB-KERNEL:OBJECT-NOT-NUMBER-ERROR)
                                     &OPTIONAL)>"[label="uses"];
-"LVAR [3578654905043868853]:
+"{39} LVAR [919264330689577080]:
 %derived-type: #<VALUES-TYPE (VALUES NULL &OPTIONAL)>
-dynamic-extent: NIL" -> "COMBINATION [2934030836138775234]:
+dynamic-extent: NIL" -> "{38} COMBINATION [3837710288170316803]:
 kind: KNOWN
 info: #<VOP-INFO
         :NAME SB-VM::TYPE-CHECK-ERROR/C
@@ -617,402 +603,193 @@ info: #<VOP-INFO
         :LTN-POLICY :FAST-SAFE
         :COST 900
         :INFO-ARG-COUNT 2>"[label="dest"color="brown"];
-"LVAR [3578654905043868853]:
+"{39} LVAR [919264330689577080]:
 %derived-type: #<VALUES-TYPE (VALUES NULL &OPTIONAL)>
-dynamic-extent: NIL" -> "REF [4132915231525632962]:
+dynamic-extent: NIL" -> "{35} REF [4291216069658349752]:
 derived-type: #<VALUES-TYPE (VALUES NULL &OPTIONAL)>"[label="uses"];
-"REF [4132915231525632962]:
-derived-type: #<VALUES-TYPE (VALUES NULL &OPTIONAL)>" -> "LVAR [3578654905043868853]:
-%derived-type: #<VALUES-TYPE (VALUES NULL &OPTIONAL)>
-dynamic-extent: NIL"[label="lvar"];
-"REF [4092118572960070058]:
-derived-type: #<VALUES-TYPE (VALUES (MEMBER SB-KERNEL:OBJECT-NOT-NUMBER-ERROR)
-                                    &OPTIONAL)>" -> "LVAR [3852467236391074190]:
-%derived-type: #<VALUES-TYPE (VALUES (MEMBER SB-KERNEL:OBJECT-NOT-NUMBER-ERROR)
-                                     &OPTIONAL)>
-dynamic-extent: NIL"[label="lvar"];
-"REF [1156828713622891660]:
-derived-type: #<VALUES-TYPE (VALUES (NOT NUMBER) &OPTIONAL)>" -> "LVAR [303435875896693038]:
-%derived-type: #<VALUES-TYPE (VALUES (NOT NUMBER) &OPTIONAL)>
-dynamic-extent: NIL"[label="lvar"];
-"REF [3760030628479005079]:
-derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>" -> "LVAR [373142717229776962]:
-%derived-type: #<VALUES-TYPE (VALUES (FUNCTION (T T T) NIL) &OPTIONAL)>
-dynamic-extent: NIL"[label="lvar"];
-"CBLOCK [2599159029235747345]" -> "CBLOCK [3040842013388754210]"[label="pred[# 0]"];
-"CBLOCK [2599159029235747345]" -> "ENTRY [2890553615432693566]:
-source-path ((BLOCK BAR (* (FOO B C) D))
-             #'(NAMED-LAMBDA BAR
-                   (B C D)
-                 (DECLARE (TOP-LEVEL-FORM))
-                 (BLOCK BAR (* (FOO B C) D)))
-             (NAMED-LAMBDA BAR
-                 (B C D)
-               (DECLARE (TOP-LEVEL-FORM))
-               (BLOCK BAR (* (FOO B C) D)))
-             (%DEFUN 'BAR
-                     (NAMED-LAMBDA BAR
-                         (B C D)
-                       (DECLARE (TOP-LEVEL-FORM))
-                       (BLOCK BAR (* (FOO B C) D))))
-             (%DEFUN 'BAR
-                     (NAMED-LAMBDA BAR
-                         (B C D)
-                       (DECLARE (TOP-LEVEL-FORM))
-                       (BLOCK BAR (* (FOO B C) D))))
-             (PROGN
-              (EVAL-WHEN (COMPILE-TOPLEVEL) (%COMPILER-DEFUN 'BAR T NIL NIL))
-              (%DEFUN 'BAR
-                      (NAMED-LAMBDA BAR
-                          (B C D)
-                        (DECLARE (TOP-LEVEL-FORM))
-                        (BLOCK BAR (* (FOO B C) D)))))
-             ORIGINAL-SOURCE-START 0 1)"[label="start[ctran: BLOCK-START]"color="blue"];
-"ENTRY [2890553615432693566]:
-source-path ((BLOCK BAR (* (FOO B C) D))
-             #'(NAMED-LAMBDA BAR
-                   (B C D)
-                 (DECLARE (TOP-LEVEL-FORM))
-                 (BLOCK BAR (* (FOO B C) D)))
-             (NAMED-LAMBDA BAR
-                 (B C D)
-               (DECLARE (TOP-LEVEL-FORM))
-               (BLOCK BAR (* (FOO B C) D)))
-             (%DEFUN 'BAR
-                     (NAMED-LAMBDA BAR
-                         (B C D)
-                       (DECLARE (TOP-LEVEL-FORM))
-                       (BLOCK BAR (* (FOO B C) D))))
-             (%DEFUN 'BAR
-                     (NAMED-LAMBDA BAR
-                         (B C D)
-                       (DECLARE (TOP-LEVEL-FORM))
-                       (BLOCK BAR (* (FOO B C) D))))
-             (PROGN
-              (EVAL-WHEN (COMPILE-TOPLEVEL) (%COMPILER-DEFUN 'BAR T NIL NIL))
-              (%DEFUN 'BAR
-                      (NAMED-LAMBDA BAR
-                          (B C D)
-                        (DECLARE (TOP-LEVEL-FORM))
-                        (BLOCK BAR (* (FOO B C) D)))))
-             ORIGINAL-SOURCE-START 0 1)" -> "NOT SUPPORTED YET:
- NIL"[label="exits"];
-"ENTRY [2890553615432693566]:
-source-path ((BLOCK BAR (* (FOO B C) D))
-             #'(NAMED-LAMBDA BAR
-                   (B C D)
-                 (DECLARE (TOP-LEVEL-FORM))
-                 (BLOCK BAR (* (FOO B C) D)))
-             (NAMED-LAMBDA BAR
-                 (B C D)
-               (DECLARE (TOP-LEVEL-FORM))
-               (BLOCK BAR (* (FOO B C) D)))
-             (%DEFUN 'BAR
-                     (NAMED-LAMBDA BAR
-                         (B C D)
-                       (DECLARE (TOP-LEVEL-FORM))
-                       (BLOCK BAR (* (FOO B C) D))))
-             (%DEFUN 'BAR
-                     (NAMED-LAMBDA BAR
-                         (B C D)
-                       (DECLARE (TOP-LEVEL-FORM))
-                       (BLOCK BAR (* (FOO B C) D))))
-             (PROGN
-              (EVAL-WHEN (COMPILE-TOPLEVEL) (%COMPILER-DEFUN 'BAR T NIL NIL))
-              (%DEFUN 'BAR
-                      (NAMED-LAMBDA BAR
-                          (B C D)
-                        (DECLARE (TOP-LEVEL-FORM))
-                        (BLOCK BAR (* (FOO B C) D)))))
-             ORIGINAL-SOURCE-START 0 1)" -> "NOT SUPPORTED YET:
- #<CLEANUP :KIND :BLOCK :MESS-UP #<SB-C::ENTRY {100230C9D3}> {100230CA23}>"[label="cleanup"];
-"ENTRY [2890553615432693566]:
-source-path ((BLOCK BAR (* (FOO B C) D))
-             #'(NAMED-LAMBDA BAR
-                   (B C D)
-                 (DECLARE (TOP-LEVEL-FORM))
-                 (BLOCK BAR (* (FOO B C) D)))
-             (NAMED-LAMBDA BAR
-                 (B C D)
-               (DECLARE (TOP-LEVEL-FORM))
-               (BLOCK BAR (* (FOO B C) D)))
-             (%DEFUN 'BAR
-                     (NAMED-LAMBDA BAR
-                         (B C D)
-                       (DECLARE (TOP-LEVEL-FORM))
-                       (BLOCK BAR (* (FOO B C) D))))
-             (%DEFUN 'BAR
-                     (NAMED-LAMBDA BAR
-                         (B C D)
-                       (DECLARE (TOP-LEVEL-FORM))
-                       (BLOCK BAR (* (FOO B C) D))))
-             (PROGN
-              (EVAL-WHEN (COMPILE-TOPLEVEL) (%COMPILER-DEFUN 'BAR T NIL NIL))
-              (%DEFUN 'BAR
-                      (NAMED-LAMBDA BAR
-                          (B C D)
-                        (DECLARE (TOP-LEVEL-FORM))
-                        (BLOCK BAR (* (FOO B C) D)))))
-             ORIGINAL-SOURCE-START 0 1)" -> "REF [1853464486177759058]:
+"{9} ENTRY [3859794357893252955]:
+" -> "{3A} NOT SUPPORTED YET:
+ #<CLEANUP :KIND :BLOCK :MESS-UP #<SB-C::ENTRY {1002A2DEA3}> {1002A2DEF3}>"[label="cleanup"];
+"{9} ENTRY [3859794357893252955]:
+" -> "{1F} REF [1077682984383576289]:
 derived-type: #<VALUES-TYPE (VALUES
                              (FUNCTION (&REST NUMBER)
                               (VALUES NUMBER &OPTIONAL))
                              &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"ENTRY [2890553615432693566]:
-source-path ((BLOCK BAR (* (FOO B C) D))
-             #'(NAMED-LAMBDA BAR
-                   (B C D)
-                 (DECLARE (TOP-LEVEL-FORM))
-                 (BLOCK BAR (* (FOO B C) D)))
-             (NAMED-LAMBDA BAR
-                 (B C D)
-               (DECLARE (TOP-LEVEL-FORM))
-               (BLOCK BAR (* (FOO B C) D)))
-             (%DEFUN 'BAR
-                     (NAMED-LAMBDA BAR
-                         (B C D)
-                       (DECLARE (TOP-LEVEL-FORM))
-                       (BLOCK BAR (* (FOO B C) D))))
-             (%DEFUN 'BAR
-                     (NAMED-LAMBDA BAR
-                         (B C D)
-                       (DECLARE (TOP-LEVEL-FORM))
-                       (BLOCK BAR (* (FOO B C) D))))
-             (PROGN
-              (EVAL-WHEN (COMPILE-TOPLEVEL) (%COMPILER-DEFUN 'BAR T NIL NIL))
-              (%DEFUN 'BAR
-                      (NAMED-LAMBDA BAR
-                          (B C D)
-                        (DECLARE (TOP-LEVEL-FORM))
-                        (BLOCK BAR (* (FOO B C) D)))))
-             ORIGINAL-SOURCE-START 0 1)" -> "ENTRY [2890553615432693566]:
-source-path ((BLOCK BAR (* (FOO B C) D))
-             #'(NAMED-LAMBDA BAR
-                   (B C D)
-                 (DECLARE (TOP-LEVEL-FORM))
-                 (BLOCK BAR (* (FOO B C) D)))
-             (NAMED-LAMBDA BAR
-                 (B C D)
-               (DECLARE (TOP-LEVEL-FORM))
-               (BLOCK BAR (* (FOO B C) D)))
-             (%DEFUN 'BAR
-                     (NAMED-LAMBDA BAR
-                         (B C D)
-                       (DECLARE (TOP-LEVEL-FORM))
-                       (BLOCK BAR (* (FOO B C) D))))
-             (%DEFUN 'BAR
-                     (NAMED-LAMBDA BAR
-                         (B C D)
-                       (DECLARE (TOP-LEVEL-FORM))
-                       (BLOCK BAR (* (FOO B C) D))))
-             (PROGN
-              (EVAL-WHEN (COMPILE-TOPLEVEL) (%COMPILER-DEFUN 'BAR T NIL NIL))
-              (%DEFUN 'BAR
-                      (NAMED-LAMBDA BAR
-                          (B C D)
-                        (DECLARE (TOP-LEVEL-FORM))
-                        (BLOCK BAR (* (FOO B C) D)))))
-             ORIGINAL-SOURCE-START 0 1)"[label="prev[ctran: BLOCK-START]"color="blue"];
-"CBLOCK [3040842013388754210]" -> "CBLOCK [2431230868627331370]"[label="pred[# 0]"];
-"CBLOCK [3040842013388754210]" -> "CBLOCK [3543250331250029355]"[label="pred[# 1]"];
-"CBLOCK [2431230868627331370]" -> "COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
-subgraph component_4 {
-}
-"CBLOCK [2431230868627331370]" -> "CBLOCK [3040842013388754210]"[label="succ[# 0]"];
-"CBLOCK [2431230868627331370]" -> "CBLOCK [3543250331250029355]"[label="pred[# 0]"];
-"CBLOCK [2431230868627331370]" -> "BIND [807137117470134609]"[label="start[ctran: BLOCK-START]"color="blue"];
-"BIND [807137117470134609]" -> "CLAMBDA [88043138350964032]:
+"{9} ENTRY [3859794357893252955]:
+" -> "{9} ENTRY [3859794357893252955]:
+"[label="prev[ctran: BLOCK-START]"color="blue"];
+"{4} CBLOCK [4485638051092447707]" -> "{0} COMPONENT [NIL]: ''DEFUN BAR''"[label="component"];
+"{4} CBLOCK [4485638051092447707]" -> "{3} CBLOCK [463338187003706333]"[label="succ[# 0]"];
+"{4} CBLOCK [4485638051092447707]" -> "{1} CBLOCK [1575903357056582106]"[label="pred[# 0]"];
+"{4} CBLOCK [4485638051092447707]" -> "{3B} BIND [1357533544267766393]"[label="start[ctran: BLOCK-START]"color="blue"];
+"{3B} BIND [1357533544267766393]" -> "{3C} CLAMBDA [2613760754162345450]:
 %debug-name: (XEP BAR)
 source-name: .ANONYMOUS.
 kind: EXTERNAL"[label="lambda"];
-"CLAMBDA [88043138350964032]:
+"{3B} BIND [1357533544267766393]" -> "{3D} REF [1764939026324736725]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="green"];
+"{3B} BIND [1357533544267766393]" -> "{3B} BIND [1357533544267766393]"[label="prev[ctran: BLOCK-START]"color="red"];
+"{3C} CLAMBDA [2613760754162345450]:
 %debug-name: (XEP BAR)
 source-name: .ANONYMOUS.
-kind: EXTERNAL" -> "CLAMBDA [88043138350964032]:
+kind: EXTERNAL" -> "{3C} CLAMBDA [2613760754162345450]:
 %debug-name: (XEP BAR)
 source-name: .ANONYMOUS.
 kind: EXTERNAL"[label="home"];
-"CLAMBDA [88043138350964032]:
+"{3C} CLAMBDA [2613760754162345450]:
 %debug-name: (XEP BAR)
 source-name: .ANONYMOUS.
-kind: EXTERNAL" -> "LAMBDA-VAR [311232715028676678]:
+kind: EXTERNAL" -> "{3E} LAMBDA-VAR [602304310100471643]:
 arg-info: NIL
 flags: 1"[label="vars[# 0]"];
-"CLAMBDA [88043138350964032]:
+"{3C} CLAMBDA [2613760754162345450]:
 %debug-name: (XEP BAR)
 source-name: .ANONYMOUS.
-kind: EXTERNAL" -> "LAMBDA-VAR [2052111623081652189]:
+kind: EXTERNAL" -> "{3F} LAMBDA-VAR [3684977715938429788]:
 arg-info: NIL
 flags: 0"[label="vars[# 1]"];
-"CLAMBDA [88043138350964032]:
+"{3C} CLAMBDA [2613760754162345450]:
 %debug-name: (XEP BAR)
 source-name: .ANONYMOUS.
-kind: EXTERNAL" -> "LAMBDA-VAR [3895253500127585494]:
+kind: EXTERNAL" -> "{40} LAMBDA-VAR [1054668136212602532]:
 arg-info: NIL
 flags: 0"[label="vars[# 2]"];
-"CLAMBDA [88043138350964032]:
+"{3C} CLAMBDA [2613760754162345450]:
 %debug-name: (XEP BAR)
 source-name: .ANONYMOUS.
-kind: EXTERNAL" -> "LAMBDA-VAR [3783607934653259556]:
+kind: EXTERNAL" -> "{41} LAMBDA-VAR [4315196173549852881]:
 arg-info: NIL
 flags: 0"[label="vars[# 3]"];
-"LAMBDA-VAR [311232715028676678]:
+"{3E} LAMBDA-VAR [602304310100471643]:
 arg-info: NIL
-flags: 1" -> "CLAMBDA [88043138350964032]:
+flags: 1" -> "{3C} CLAMBDA [2613760754162345450]:
 %debug-name: (XEP BAR)
 source-name: .ANONYMOUS.
 kind: EXTERNAL"[label="home"];
-"LAMBDA-VAR [311232715028676678]:
+"{3F} LAMBDA-VAR [3684977715938429788]:
 arg-info: NIL
-flags: 1" -> "NOT SUPPORTED YET:
- NIL"[label="sets"];
-"LAMBDA-VAR [2052111623081652189]:
-arg-info: NIL
-flags: 0" -> "CLAMBDA [88043138350964032]:
+flags: 0" -> "{3C} CLAMBDA [2613760754162345450]:
 %debug-name: (XEP BAR)
 source-name: .ANONYMOUS.
 kind: EXTERNAL"[label="home"];
-"LAMBDA-VAR [2052111623081652189]:
+"{40} LAMBDA-VAR [1054668136212602532]:
 arg-info: NIL
-flags: 0" -> "NOT SUPPORTED YET:
- NIL"[label="sets"];
-"LAMBDA-VAR [3895253500127585494]:
-arg-info: NIL
-flags: 0" -> "CLAMBDA [88043138350964032]:
+flags: 0" -> "{3C} CLAMBDA [2613760754162345450]:
 %debug-name: (XEP BAR)
 source-name: .ANONYMOUS.
 kind: EXTERNAL"[label="home"];
-"LAMBDA-VAR [3895253500127585494]:
+"{41} LAMBDA-VAR [4315196173549852881]:
 arg-info: NIL
-flags: 0" -> "NOT SUPPORTED YET:
- NIL"[label="sets"];
-"LAMBDA-VAR [3783607934653259556]:
-arg-info: NIL
-flags: 0" -> "CLAMBDA [88043138350964032]:
+flags: 0" -> "{3C} CLAMBDA [2613760754162345450]:
 %debug-name: (XEP BAR)
 source-name: .ANONYMOUS.
 kind: EXTERNAL"[label="home"];
-"LAMBDA-VAR [3783607934653259556]:
-arg-info: NIL
-flags: 0" -> "NOT SUPPORTED YET:
- NIL"[label="sets"];
-"BIND [807137117470134609]" -> "REF [425666642158422290]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="green"];
-"REF [425666642158422290]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "CLAMBDA [3268245339652752361]:
+"{3D} REF [1764939026324736725]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "{11} CLAMBDA [274430610392932488]:
 %debug-name: NIL
 source-name: BAR
 kind: NIL"[label="leaf"];
-"REF [425666642158422290]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "REF [3373873070462568255]:
+"{3D} REF [1764939026324736725]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "{42} REF [842470847812081026]:
 derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"REF [3373873070462568255]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LAMBDA-VAR [2052111623081652189]:
+"{3D} REF [1764939026324736725]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "{43} LVAR [1888062279493340457]:
+%derived-type: NIL
+dynamic-extent: NIL"[label="lvar"];
+"{42} REF [842470847812081026]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{3F} LAMBDA-VAR [3684977715938429788]:
 arg-info: NIL
 flags: 0"[label="leaf"];
-"REF [3373873070462568255]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "REF [2891851770440406210]:
+"{42} REF [842470847812081026]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{44} REF [2055375462078303612]:
 derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"REF [2891851770440406210]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LAMBDA-VAR [3895253500127585494]:
+"{42} REF [842470847812081026]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{45} LVAR [4254170655862804359]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"{44} REF [2055375462078303612]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{40} LAMBDA-VAR [1054668136212602532]:
 arg-info: NIL
 flags: 0"[label="leaf"];
-"REF [2891851770440406210]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "REF [1035334476956774833]:
+"{44} REF [2055375462078303612]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{46} REF [4363891311576890011]:
 derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"REF [1035334476956774833]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LAMBDA-VAR [3783607934653259556]:
+"{44} REF [2055375462078303612]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{47} LVAR [3883248025090896421]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"{46} REF [4363891311576890011]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{41} LAMBDA-VAR [4315196173549852881]:
 arg-info: NIL
 flags: 0"[label="leaf"];
-"REF [1035334476956774833]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "COMBINATION [2750243349513387073]:
+"{46} REF [4363891311576890011]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{48} COMBINATION [3442268956323344380]:
 kind: LOCAL
 info: LOCAL"[label="next[ctran: INSIDE-BLOCK]"color="blue"];
-"COMBINATION [2750243349513387073]:
+"{46} REF [4363891311576890011]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "{49} LVAR [571401066792478435]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL"[label="lvar"];
+"{48} COMBINATION [3442268956323344380]:
 kind: LOCAL
-info: LOCAL" -> "LVAR [1428109016871430759]:
+info: LOCAL" -> "{43} LVAR [1888062279493340457]:
 %derived-type: NIL
 dynamic-extent: NIL"[label="fun"];
-"LVAR [1428109016871430759]:
-%derived-type: NIL
-dynamic-extent: NIL" -> "COMBINATION [2750243349513387073]:
+"{48} COMBINATION [3442268956323344380]:
 kind: LOCAL
-info: LOCAL"[label="dest"color="brown"];
-"LVAR [1428109016871430759]:
-%derived-type: NIL
-dynamic-extent: NIL" -> "REF [425666642158422290]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>"[label="uses"];
-"COMBINATION [2750243349513387073]:
-kind: LOCAL
-info: LOCAL" -> "LVAR [2324636684209545369]:
+info: LOCAL" -> "{45} LVAR [4254170655862804359]:
 %derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
 dynamic-extent: NIL"[label="args[# 0]"];
-"COMBINATION [2750243349513387073]:
+"{48} COMBINATION [3442268956323344380]:
 kind: LOCAL
-info: LOCAL" -> "LVAR [711474996650926771]:
+info: LOCAL" -> "{47} LVAR [3883248025090896421]:
 %derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
 dynamic-extent: NIL"[label="args[# 1]"];
-"COMBINATION [2750243349513387073]:
+"{48} COMBINATION [3442268956323344380]:
 kind: LOCAL
-info: LOCAL" -> "LVAR [2367793305922162954]:
+info: LOCAL" -> "{49} LVAR [571401066792478435]:
 %derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
 dynamic-extent: NIL"[label="args[# 2]"];
-"LVAR [2324636684209545369]:
-%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL" -> "COMBINATION [2750243349513387073]:
-kind: LOCAL
-info: LOCAL"[label="dest"color="brown"];
-"LVAR [2324636684209545369]:
-%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL" -> "REF [3373873070462568255]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="uses"];
-"LVAR [711474996650926771]:
-%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL" -> "COMBINATION [2750243349513387073]:
-kind: LOCAL
-info: LOCAL"[label="dest"color="brown"];
-"LVAR [711474996650926771]:
-%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL" -> "REF [2891851770440406210]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="uses"];
-"LVAR [2367793305922162954]:
-%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL" -> "COMBINATION [2750243349513387073]:
-kind: LOCAL
-info: LOCAL"[label="dest"color="brown"];
-"LVAR [2367793305922162954]:
-%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL" -> "REF [1035334476956774833]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="uses"];
-"REF [1035334476956774833]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LVAR [2367793305922162954]:
-%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL"[label="lvar"];
-"REF [2891851770440406210]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LVAR [711474996650926771]:
-%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL"[label="lvar"];
-"REF [3373873070462568255]:
-derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>" -> "LVAR [2324636684209545369]:
-%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
-dynamic-extent: NIL"[label="lvar"];
-"REF [425666642158422290]:
-derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>" -> "LVAR [1428109016871430759]:
+"{43} LVAR [1888062279493340457]:
 %derived-type: NIL
-dynamic-extent: NIL"[label="lvar"];
-"BIND [807137117470134609]" -> "BIND [807137117470134609]"[label="prev[ctran: BLOCK-START]"color="red"];
-"CBLOCK [3040842013388754210]" -> "BIND [1203651624782589298]"[label="start[ctran: BLOCK-START]"color="blue"];
-"BIND [1203651624782589298]" -> "CLAMBDA [3268245339652752361]:
+dynamic-extent: NIL" -> "{48} COMBINATION [3442268956323344380]:
+kind: LOCAL
+info: LOCAL"[label="dest"color="brown"];
+"{43} LVAR [1888062279493340457]:
+%derived-type: NIL
+dynamic-extent: NIL" -> "{3D} REF [1764939026324736725]:
+derived-type: #<VALUES-TYPE (VALUES FUNCTION &OPTIONAL)>"[label="uses"];
+"{45} LVAR [4254170655862804359]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL" -> "{48} COMBINATION [3442268956323344380]:
+kind: LOCAL
+info: LOCAL"[label="dest"color="brown"];
+"{45} LVAR [4254170655862804359]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL" -> "{42} REF [842470847812081026]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="uses"];
+"{47} LVAR [3883248025090896421]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL" -> "{48} COMBINATION [3442268956323344380]:
+kind: LOCAL
+info: LOCAL"[label="dest"color="brown"];
+"{47} LVAR [3883248025090896421]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL" -> "{44} REF [2055375462078303612]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="uses"];
+"{49} LVAR [571401066792478435]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL" -> "{48} COMBINATION [3442268956323344380]:
+kind: LOCAL
+info: LOCAL"[label="dest"color="brown"];
+"{49} LVAR [571401066792478435]:
+%derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>
+dynamic-extent: NIL" -> "{46} REF [4363891311576890011]:
+derived-type: #<VALUES-TYPE (VALUES T &OPTIONAL)>"[label="uses"];
+"{6} BIND [2888465489035891844]" -> "{11} CLAMBDA [274430610392932488]:
 %debug-name: NIL
 source-name: BAR
 kind: NIL"[label="lambda"];
-"BIND [1203651624782589298]" -> "NOT SUPPORTED YET:
- NIL"[label="next"color="green"];
-"BIND [1203651624782589298]" -> "BIND [1203651624782589298]"[label="prev[ctran: BLOCK-START]"color="red"];
-"CBLOCK [3543250331250029355]" -> "NOT SUPPORTED YET:
- NIL"[label="pred"];
-"CBLOCK [3543250331250029355]" -> "NOT SUPPORTED YET:
- NIL"[label="start"];
-"COMPONENT [NIL]: ''DEFUN BAR''" -> "CBLOCK [2078005060648962145]"[label="tail"];
-}
+"{6} BIND [2888465489035891844]" -> "{6} BIND [2888465489035891844]"[label="prev[ctran: BLOCK-START]"color="red"];
 }
