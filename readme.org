@@ -22,32 +22,32 @@
    will print out progress information, and will tell you when and
    where it writes out the graphviz files.
 
-   
+
 ** How do I use the system interactively?
    If you ran into a compiler error, and want to graph the
    still-in-memory code interactively, you can do so with the
    following functions:
-   
+
 *** ~(make-and-dfs object distance)~
     This function takes an ir1 object ~object~, and integer
     ~distance~, and returns a graph object with every node up to
     ~distance~ hops away from ~object~ in its ~dfs-table~. Each object
     is tagged with a "codename", visible as a hex digit in braces at
     the start of each graph node.
-    
+
     Then, to operate on the graph interactively, you can use:
-    
+
 *** ~(interactively-graph graph &optional filename)~
     This function takes a ~graph~ and a ~filename~, and sets the
     current working graph to it, and the current output file to the
     filename. When calling ~output~ and ~expand~, the graph will be
     written to ~filename~.
-    
+
 *** ~(output)~
     This function outputs the current working graph to a string, and
     if ~interactively-graph~ was called with a filename, writes it to
     that file.
-    
+
 *** ~(expand codename)~
     After you've rendered the graph, if you want to add a node to the
     ~dfs-table~ (thus expanding the amount of the in-memory objects
@@ -60,7 +60,7 @@
 *** ~(get-node codename)~
     Returns the object tied to ~codename~ from the current interactive
     graph.
-    
+
 ** And if you don't want to use ~interactively-graph~:
 *** ~(render-graph graph)~
     Given a graph with objects in its ~dfs-table~, returns a string of
@@ -71,7 +71,7 @@
 
 *** ~(expand-graph-codename graph codename)~
     Given a graph and codename, put the node tied to ~codename~ into
-    the ~dfs-table~ of the graph. 
+    the ~dfs-table~ of the graph.
 
     Does the same thing as ~expand~, but without using
     ~interactively-graph~.
@@ -81,7 +81,7 @@
 
     Does the same thing as ~node~, but without using
     ~interactively-graph~.
-    
+
 ** What good is ~interactively-graph~ if I need to run ~dot~ every time the graph gets output?
    That's where ~render-on-change.sh~ comes in. Run
    ~render-on-change.sh~ with two arguments. First is the input DOT
@@ -93,7 +93,7 @@
    with ~--with-sb-devel~ (if you're doing compiler work, you should
    probably do this anyways). In ~src/package.lisp~, there's a
    ~(sb-ext:unlock-package :sb-c)~ statement, but it seems to not work
-   as expected. 
+   as expected.
 
 ** But what if the compiler breaks your library, or I want to muck around with it?
    ~hooking.lisp~ contains all the code that is used to hook the
@@ -108,7 +108,7 @@
 ** After the ~.dot~ files get output, how do I render them?
    ~dot -T<output-format> input.dot > output~.
    For example, ~dot -Tsvg trace-1-DEFUNFOO.dot > out.svg~.
-  
+
 ** Can I see an example?
    Yes, look at the ~example/~ folder. It contains the dot output
    when running ~(compile-file "testfile" :trace-file t)~.
