@@ -1,6 +1,9 @@
 * ir1-grapher
   This library graphs SBCL [[https://cmucl.org/docs/internals/html/The-Implicit-Continuation-Representation.html#The-Implicit-Continuation-Representation][ir1]] and outputs graphviz.
 
+  This has been committed as a contrib module for SBCL, under
+  ~contrib/sb-graph~ :tada:
+
   As of now, it is stil unfinished. There are a few tweaks that are
   needed to improve useablility, in particular, I think the rendering
   could be done a lot better, with subgraphs, to make it a lot more
